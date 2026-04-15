@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#f1c97d",
+                    "background": "#0a0a0a",
+                    "surface-ice": "#fafafa",
+                    "on-surface": "#fafafa",
+                    "on-background": "#fafafa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "3xl": "2rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Outfit", "sans-serif"],
+                    "body": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #fafafa;
+            overflow-x: hidden;
+        }
+        .reveal { opacity: 0; }
+    </style>
+</head>
+<body class="font-body">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 bg-neutral-950/80 backdrop-blur-xl rounded-full mt-4 mx-auto w-[90%] max-w-5xl">
+<div class="text-2xl font-black tracking-tighter text-[#fafafa] uppercase font-headline">SPAZIO</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#f1c97d] font-bold font-headline tracking-tight hover:text-[#f1c97d] transition-colors duration-300" href="#">Experience</a>
+<a class="text-zinc-400 font-medium font-headline tracking-tight hover:text-[#f1c97d] transition-colors duration-300" href="#">Services</a>
+<a class="text-zinc-400 font-medium font-headline tracking-tight hover:text-[#f1c97d] transition-colors duration-300" href="#">Location</a>
+</div>
+<button class="bg-[#f1c97d] text-[#0a0a0a] px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider active:scale-95 transition-all">
+        Book Appointment
+    </button>
+</nav>
+<!-- Hero Section (Preserved) -->
+<header class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-[#0a0a0a]">
+<div class="container mx-auto px-6 z-10 text-center reveal">
+<div class="max-w-4xl mx-auto">
+<span class="text-[#f1c97d] font-headline font-bold uppercase tracking-[0.3em] text-xs mb-8 block">The Architectural Groomer</span>
+<h1 class="font-headline text-5xl md:text-8xl font-extrabold tracking-tighter text-[#fafafa] leading-[0.9] mb-12">
+                Sua imagem está abrindo ou fechando portas?
+            </h1>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="bg-[#f1c97d] text-[#0a0a0a] px-10 py-5 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-transform duration-300">
+                    Iniciar Transformação
+                </button>
+<p class="text-zinc-400 max-w-[280px] text-left text-sm leading-relaxed border-l border-zinc-800 pl-6">
+                    Uma consultoria técnica baseada em visagismo para homens que buscam autoridade através da estética.
+                </p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#1c1b1b] rounded-tl-[10rem] -z-0 opacity-50"></div>
+</header>
+<!-- Comparative Section -->
+<section class="flex flex-col md:flex-row min-h-[70vh]">
+<!-- The Standard (Ice) -->
+<div class="w-full md:w-1/2 bg-[#fafafa] p-12 md:p-24 flex flex-col justify-center reveal">
+<span class="text-zinc-400 font-headline font-bold uppercase tracking-widest text-xs mb-4">Baseline</span>
+<h2 class="text-zinc-900 font-headline text-4xl md:text-6xl font-extrabold tracking-tighter mb-12">O Padrão</h2>
+<ul class="space-y-8">
+<li class="flex flex-col">
+<span class="text-zinc-900 font-bold uppercase tracking-tight text-lg italic">Repetição sem intenção</span>
+<p class="text-zinc-600 text-sm max-w-xs">Cortes genéricos que não consideram sua estrutura óssea ou objetivos profissionais.</p>
+</li>
+<li class="flex flex-col">
+<span class="text-zinc-900 font-bold uppercase tracking-tight text-lg italic">Ambiente saturado</span>
+<p class="text-zinc-600 text-sm max-w-xs">Barbearias tradicionais focadas em volume de atendimento, não em qualidade diagnóstica.</p>
+</li>
+</ul>
+</div>
+<!-- The Consultancy (Dark) -->
+<div class="w-full md:w-1/2 bg-[#0a0a0a] p-12 md:p-24 flex flex-col justify-center reveal">
+<span class="text-[#f1c97d] font-headline font-bold uppercase tracking-widest text-xs mb-4">Elite Tier</span>
+<h2 class="text-[#fafafa] font-headline text-4xl md:text-6xl font-extrabold tracking-tighter mb-12">A Consultoria Spazio</h2>
+<ul class="space-y-8">
+<li class="flex flex-col">
+<span class="text-[#f1c97d] font-bold uppercase tracking-tight text-lg">Visagismo Arquitetônico</span>
+<p class="text-zinc-400 text-sm max-w-xs">Mapeamento facial completo para projetar a mensagem que sua carreira exige.</p>
+</li>
+<li class="flex flex-col">
+<span class="text-[#f1c97d] font-bold uppercase tracking-tight text-lg">Curadoria de Imagem</span>
+<p class="text-zinc-400 text-sm max-w-xs">Atendimento exclusivo, focado em homens de alto valor e decisões estratégicas.</p>
+</li>
+</ul>
+</div>
+</section>
+<!-- NEW SECTION: THE SCIENCE OF VISAGISM -->
+<section class="bg-[#0a0a0a] py-32 px-6">
+<div class="container mx-auto max-w-5xl text-center reveal">
+<h2 class="font-headline text-4xl md:text-6xl font-bold tracking-tighter text-[#fafafa] mb-8">
+            Não é um corte. <span class="text-[#f1c97d]">É engenharia de imagem.</span>
+</h2>
+<p class="font-body text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-20">
+            O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos as linhas de força do seu rosto, a sua estrutura óssea e o seu momento profissional para desenhar a estética que projeta a sua melhor versão.
+        </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-zinc-800 pt-16">
+<div class="text-left">
+<div class="text-[#f1c97d] font-headline font-bold text-xl mb-4">1. Diagnóstico Facial</div>
+<p class="text-zinc-500 text-sm">Análise milimétrica da morfologia craniana e pontos de luz do rosto.</p>
+</div>
+<div class="text-left">
+<div class="text-[#f1c97d] font-headline font-bold text-xl mb-4">2. Estratégia de Imagem</div>
+<p class="text-zinc-500 text-sm">Alinhamento entre seus objetivos de carreira e a projeção visual de autoridade.</p>
+</div>
+<div class="text-left">
+<div class="text-[#f1c97d] font-headline font-bold text-xl mb-4">3. Execução Técnica</div>
+<p class="text-zinc-500 text-sm">Cortes precisos e acabamentos que respeitam o crescimento natural e a arquitetura do fio.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- NEW SECTION: THE IMPACT -->
+<section class="bg-[#fafafa] py-32 md:py-48 px-6">
+<div class="container mx-auto max-w-6xl">
+<div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+<div class="w-full md:w-1/2 reveal">
+<div class="aspect-[9/16] w-full max-w-[400px] mx-auto bg-zinc-200 rounded-3xl overflow-hidden relative group shadow-2xl">
+<img alt="Consultoria Visagismo" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ug_6Uf0xKD4JoqOrf1aWNSlKVXkc1VVloGRM5b0sgoh1GRK33V1VDAXUBbCZUWhCW1dudiUiQgS5j6SBiovyzYh5D084s_dw-NAx8HCzaVqh__qlb0-N6V9d7mAPMrHN-j-SiFgIb1v1VPyTExZumuIs74bQklR3US7WUqIKNH573EkRXgc7wQChNottn8FHcLZE4RWggw_fXCTGh0hyanZZ4L9ZHJYtcw2P187-uS2g5XmBYUaRbEl7Meg_dY7Q8vnqZHhFZoWqtU"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-20 h-20 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 reveal">
+<h2 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter text-zinc-900 leading-none mb-8">
+                    A diferença entre ser visto e <span class="text-zinc-400 italic">ser lembrado.</span>
+</h2>
+<div class="h-px w-24 bg-zinc-900 mb-8"></div>
+<p class="text-zinc-500 font-medium max-w-md">Assista como a consultoria estratégica transforma não apenas o visual, mas a confiança de líderes que frequentam o Spazio.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Section (Preserved) -->
+<section class="bg-[#fafafa] py-24 md:py-48 px-6">
+<div class="container mx-auto max-w-7xl">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
+<div class="max-w-2xl">
+<span class="text-zinc-400 font-headline font-bold uppercase tracking-[0.3em] text-xs mb-6 block">Curated Services</span>
+<h2 class="text-zinc-900 font-headline text-5xl md:text-7xl font-extrabold tracking-tighter leading-none">
+                    Engenharia Estética Aplicada.
+                </h2>
+</div>
+<div class="text-zinc-500 font-medium text-right uppercase tracking-widest text-[10px]">
+                Price List / MMXXIV
+            </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 reveal">
+<!-- Main Feature Card -->
+<div class="md:col-span-7 bg-[#1c1b1b] rounded-xl overflow-hidden group h-[600px] relative">
+<img class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-80 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS0jLcev8J3V0zKcaNp7rRmMv_n-3wUlHEkZhrXT9kn2ui9epJIzYd-Zjeic3WSIj156gayhRLuUjqykM-rcId0Wi6gzHasUVSZODkNeCfOkv9PDCvrSUGJav6OfnGM__-InK1nKill5Q6INxG4oc7MYfGHH12rgGu4FzzGAFBx0w0xCYI7WM4Yw-nPyxCUiREoYzSBkMF-E53dJeKanT3FvWsAiagkrxIf0OBMvwjofH0YH0TZ34NlAxgxHp77Ox2b9iasDgG6Zoe"/>
+<div class="absolute inset-0 p-12 flex flex-col justify-end">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-[#fafafa] font-headline text-4xl font-bold tracking-tighter mb-2">Visagismo Arquitetônico</h3>
+<p class="text-zinc-400 text-sm max-w-xs mb-6">A transformação completa. Diagnóstico facial, corte técnico e reconstrução de imagem.</p>
+<span class="inline-block bg-[#f1c97d] text-[#0a0a0a] px-6 py-2 rounded-full font-bold text-sm tracking-tighter">Reserve Your Session</span>
+</div>
+<span class="text-[#f1c97d] font-headline text-4xl font-black italic">R$ 800</span>
+</div>
+</div>
+</div>
+<!-- Side Card 1 -->
+<div class="md:col-span-5 bg-[#201f1f] rounded-xl p-12 flex flex-col justify-between">
+<div>
+<div class="w-12 h-px bg-[#f1c97d] mb-12"></div>
+<h3 class="text-[#fafafa] font-headline text-3xl font-bold tracking-tighter mb-4">Visagismo Óptico</h3>
+<p class="text-zinc-400 text-sm leading-relaxed">Consultoria para escolha de armações e acessórios que complementam seu formato de rosto e traços naturais.</p>
+</div>
+<div class="mt-auto">
+<div class="text-zinc-500 text-xs uppercase tracking-widest mb-2">Exclusive Add-on</div>
+<span class="text-2xl font-bold text-[#fafafa] tracking-tight">Sob Consulta</span>
+</div>
+</div>
+<!-- Side Card 2 -->
+<div class="md:col-span-5 bg-[#fafafa] border border-zinc-200 rounded-xl p-12 flex flex-col justify-between group overflow-hidden relative">
+<div class="z-10">
+<h3 class="text-zinc-900 font-headline text-3xl font-bold tracking-tighter mb-4">Ritual Spazio de Barba</h3>
+<p class="text-zinc-600 text-sm leading-relaxed">Relaxamento e precisão. Toalhas quentes, óleos essenciais e o acabamento impecável da arquitetura facial.</p>
+</div>
+<div class="z-10 mt-12">
+<span class="text-zinc-900 text-3xl font-black italic">R$ 180</span>
+</div>
+<div class="absolute -right-8 -bottom-8 w-48 h-48 border border-zinc-100 rounded-full"></div>
+</div>
+<!-- Image Focus Card -->
+<div class="md:col-span-7 bg-zinc-900 rounded-xl overflow-hidden h-[400px]">
+<img class="w-full h-full object-cover grayscale brightness-75 hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV-P5x4Oe4H0jXPTqbzrgUd-DznacXkBU4ffRWXmKpC3KJJcKXuKdTHMIhhEV8YIvKCrRKSU4BRARYdXLFrWnZBqmcwG3zloLXOFTE-aYPgoISvfIfTBuK5Oz5i3gKrGF_Q9NT-FIk2Ya6WSJ1v_BP7SSinDo0ktpAF0Z8HeMrUuhb02_iyb6tnelJhFcd6ySvFGro_z0oBKN27rEfnBAy_r1HZhSuIIVu1ktQINnGBP7X2fxCaM9gAYJN0ao4uFtd8RiqWLF3nAue"/>
+</div>
+</div>
+</div>
+</section>
+<!-- NEW SECTION: ELITE SOCIAL PROOF -->
+<section class="bg-[#0a0a0a] py-32 px-6">
+<div class="container mx-auto max-w-6xl">
+<div class="flex flex-col items-center text-center mb-24 reveal">
+<span class="text-[#f1c97d] font-headline font-bold uppercase tracking-widest text-xs mb-6">World Class Standard</span>
+<h2 class="font-headline text-4xl md:text-6xl font-bold tracking-tighter text-[#fafafa] mb-4">A autoridade máxima da Pedra Branca.</h2>
+<div class="mt-8">
+<div class="font-headline text-8xl md:text-9xl font-black text-[#f1c97d] leading-none">4.9 / 5.0</div>
+<p class="text-zinc-500 font-body uppercase tracking-[0.2em] text-xs mt-4">Baseado em 258 avaliações reais de clientes exigentes.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+<div class="p-10 border border-white/10 rounded-3xl bg-transparent">
+<div class="flex gap-1 mb-6">
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+</div>
+<p class="text-zinc-300 font-body text-lg italic mb-8 leading-relaxed">"Atendimento nota 1000. Excelentes profissionais e ambiente top."</p>
+<div class="font-headline font-bold text-[#fafafa] uppercase tracking-tighter">— Wagner Bona</div>
+</div>
+<div class="p-10 border border-white/10 rounded-3xl bg-transparent">
+<div class="flex gap-1 mb-6">
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+<span class="material-symbols-outlined text-[#f1c97d] fill-1 text-sm">star</span>
+</div>
+<p class="text-zinc-300 font-body text-lg italic mb-8 leading-relaxed">"Cinco estrelas. Excelente atendimento. Local show."</p>
+<div class="font-headline font-bold text-[#fafafa] uppercase tracking-tighter">— Bernard Scholz</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-12 py-12 bg-[#0a0a0a] border-t border-zinc-900/50">
+<div class="flex flex-col mb-8 md:mb-0">
+<div class="text-lg font-bold text-[#fafafa] font-headline uppercase mb-2">SPAZIO</div>
+<p class="text-[10px] font-medium tracking-widest uppercase text-zinc-400">© 2024 SPAZIO. THE ARCHITECTURAL GROOMER.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-zinc-500 hover:text-[#fafafa] transition-all text-[10px] font-medium tracking-widest uppercase" href="#">Instagram</a>
+<a class="text-zinc-500 hover:text-[#fafafa] transition-all text-[10px] font-medium tracking-widest uppercase" href="#">AppBarber</a>
+<a class="text-zinc-500 hover:text-[#fafafa] transition-all text-[10px] font-medium tracking-widest uppercase" href="#">Privacy</a>
+<a class="text-zinc-500 hover:text-[#fafafa] transition-all text-[10px] font-medium tracking-widest uppercase" href="#">Terms</a>
+</div>
+<div class="mt-8 md:mt-0 flex items-center gap-4">
+<span class="material-symbols-outlined text-[#f1c97d] text-lg">location_on</span>
+<span class="text-zinc-400 text-[10px] font-medium tracking-widest uppercase">São Paulo, BR</span>
+</div>
+</footer>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.utils.toArray('.reveal').forEach(elem => {
+        gsap.to(elem, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: elem,
+                start: "top 85%",
+                toggleActions: "play none none none"
+            }
+        });
+        gsap.set(elem, { y: 30 });
+    });
+</script>
+</body></html>
