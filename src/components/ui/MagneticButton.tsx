@@ -4,22 +4,17 @@ import { useRef, useCallback, type ReactNode, type MouseEvent } from "react";
 import gsap from "gsap";
 
 /**
- * MagneticButton — Botão Magnético com Glassmorphism
+ * MagneticButton — Botão Magnético Premium
  *
- * Componente de botão ultra-premium que "segue" o cursor do utilizador
- * criando um efeito magnético natural. Inclui:
+ * Efeito magnético CLAMPED a ±15px para evitar overflow visual.
+ * O texto interno acompanha com metade da intensidade.
+ * Estilo: rounded-full, primary gold, scale hover.
  *
- * - Efeito magnético via onMouseMove + GSAP transform
- * - Glassmorphism com backdrop-blur e borda dourada semi-transparente
- * - Glow effect subtil no hover
- * - Reset suave ao sair do hover
- *
- * Props:
- * @param children — Conteúdo do botão
- * @param href — Link de destino (opcional)
- * @param className — Classes adicionais (opcional)
- * @param strength — Intensidade do efeito magnético (default: 0.3)
+ * Segue DESIGN.md: buttons are rounded-full, primary bg, no shadows.
+ * On hover: slight scale (1.02) rather than color change.
  */
+
+const MAX_DISPLACEMENT = 15;
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -27,6 +22,10 @@ interface MagneticButtonProps {
   className?: string;
   strength?: number;
   "data-animate"?: string;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
 }
 
 export function MagneticButton({
@@ -39,10 +38,6 @@ export function MagneticButton({
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const innerRef = useRef<HTMLSpanElement | null>(null);
 
-  /**
-   * Calcula o deslocamento magnético baseado na posição do cursor
-   * relativa ao centro do botão.
-   */
   const handleMouseMove = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       const button = buttonRef.current;
@@ -51,24 +46,23 @@ export function MagneticButton({
       const rect = button.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-
-      // Distância do cursor ao centro do botão
       const deltaX = e.clientX - centerX;
       const deltaY = e.clientY - centerY;
 
-      // Aplica o deslocamento magnético ao botão
+      const moveX = clamp(deltaX * strength, -MAX_DISPLACEMENT, MAX_DISPLACEMENT);
+      const moveY = clamp(deltaY * strength, -MAX_DISPLACEMENT, MAX_DISPLACEMENT);
+
       gsap.to(button, {
-        x: deltaX * strength,
-        y: deltaY * strength,
+        x: moveX,
+        y: moveY,
         duration: 0.4,
         ease: "power2.out",
       });
 
-      // O texto interno segue com maior intensidade para profundidade
       if (innerRef.current) {
         gsap.to(innerRef.current, {
-          x: deltaX * strength * 0.5,
-          y: deltaY * strength * 0.5,
+          x: moveX * 0.5,
+          y: moveY * 0.5,
           duration: 0.4,
           ease: "power2.out",
         });
@@ -77,35 +71,16 @@ export function MagneticButton({
     [strength]
   );
 
-  /**
-   * Reset suave quando o cursor sai — o botão volta ao centro
-   * com uma curva elástica premium.
-   */
   const handleMouseLeave = useCallback(() => {
     const button = buttonRef.current;
     if (!button) return;
 
-    gsap.to(button, {
-      x: 0,
-      y: 0,
-      duration: 0.7,
-      ease: "elastic.out(1, 0.4)",
-    });
-
+    gsap.to(button, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" });
     if (innerRef.current) {
-      gsap.to(innerRef.current, {
-        x: 0,
-        y: 0,
-        duration: 0.7,
-        ease: "elastic.out(1, 0.4)",
-      });
+      gsap.to(innerRef.current, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" });
     }
   }, []);
 
-  /**
-   * Navegação: se href está definido, abre o link.
-   * Pode ser expandido para integrar com Next.js router.
-   */
   const handleClick = useCallback(() => {
     if (href) {
       window.open(href, "_blank", "noopener,noreferrer");
@@ -118,16 +93,14 @@ export function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
-      className={`group relative inline-flex items-center justify-center px-8 py-4 rounded-full cursor-pointer border border-[rgba(241,201,125,0.2)] bg-[rgba(241,201,125,0.06)] backdrop-blur-[40px] text-primary-gold font-body text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[rgba(241,201,125,0.12)] hover:border-[rgba(241,201,125,0.4)] hover:shadow-[0_0_40px_rgba(241,201,125,0.15)] will-change-transform ${className}`}
+      className={`group relative inline-flex items-center justify-center rounded-full cursor-pointer font-bold text-lg transition-transform duration-300 hover:scale-[1.02] active:scale-95 will-change-transform overflow-hidden ${className}`}
+      style={{
+        backgroundColor: "#f1c97d",
+        color: "#0a0a0a",
+        padding: "20px 40px",
+      }}
       {...props}
     >
-      {/* Glow effect no hover — camada separada para performance */}
-      <span
-        className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(241,201,125,0.08)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Texto interno com tracking magnético independente */}
       <span ref={innerRef} className="relative z-10">
         {children}
       </span>

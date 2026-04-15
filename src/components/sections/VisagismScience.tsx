@@ -8,27 +8,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * VisagismScience — Seção de Metodologia e Ciência por trás do Visagismo
+ * VisagismScience — The Science of Visagism
  *
- * Seção de transição após o Hero, mantendo o fundo dark mode estrito.
- * Foca em autoridade técnica ("Não é um corte. É engenharia de imagem.").
+ * Centered layout on dark bg (#0a0a0a) matching code.html prototype.
+ * Big centered headline + paragraph, then 3-column process grid
+ * separated by border-t border-zinc-800.
+ *
+ * NO radial glows, NO decorative gradients (DESIGN.md: "No Gradients").
  */
 
 const PROCESS_STEPS = [
   {
-    num: "1",
-    title: "Diagnóstico",
-    desc: "Mapeamento das geometrias faciais e linhas de expressão.",
+    title: "1. Diagnóstico Facial",
+    desc: "Análise milimétrica da morfologia craniana e pontos de luz do rosto.",
   },
   {
-    num: "2",
-    title: "Estratégia",
-    desc: "Alinhamento com o seu momento profissional e imagem desejada.",
+    title: "2. Estratégia de Imagem",
+    desc: "Alinhamento entre seus objetivos de carreira e a projeção visual de autoridade.",
   },
   {
-    num: "3",
-    title: "Execução",
-    desc: "Técnica de alta precisão para esculpir e reposicionar.",
+    title: "3. Execução Técnica",
+    desc: "Cortes precisos e acabamentos que respeitam o crescimento natural e a arquitetura do fio.",
   },
 ];
 
@@ -40,38 +40,22 @@ export function VisagismScience() {
       const section = sectionRef.current;
       if (!section) return;
 
-      const title = section.querySelector("[data-animate='science-title']");
-      const text = section.querySelector("[data-animate='science-text']");
-      const steps = section.querySelectorAll("[data-animate='science-step']");
+      const elements = section.querySelectorAll("[data-animate='science-el']");
+      gsap.set(elements, { opacity: 0, y: 30 });
 
-      gsap.set([title, text], { opacity: 0, y: 40 });
-      gsap.set(steps, { opacity: 0, scale: 0.95 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          once: true,
+      ScrollTrigger.batch(elements, {
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power3.out",
+          });
         },
+        start: "top 85%",
+        once: true,
       });
-
-      tl.to([title, text], {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: "power3.out",
-      }).to(
-        steps,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-        },
-        "-=0.4"
-      );
     },
     { scope: sectionRef }
   );
@@ -79,116 +63,59 @@ export function VisagismScience() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden"
+      className="w-full"
       style={{
-        backgroundColor: "#050505",
-        paddingTop: "clamp(5rem, 12vw, 10rem)",
-        paddingBottom: "clamp(5rem, 12vw, 10rem)",
+        backgroundColor: "#0a0a0a",
+        paddingTop: "clamp(5rem, 10vw, 8rem)",
+        paddingBottom: "clamp(5rem, 10vw, 8rem)",
         paddingLeft: "1.5rem",
         paddingRight: "1.5rem",
       }}
       aria-label="A Ciência do Visagismo"
     >
-      {/* Background glow para dar profundidade ao dark mode */}
-      <div
-        className="absolute bottom-0 right-0 pointer-events-none"
-        style={{
-          width: "600px",
-          height: "600px",
-          background:
-            "radial-gradient(circle, rgba(241,201,125,0.03) 0%, transparent 60%)",
-        }}
-        aria-hidden="true"
-      />
+      <div className="max-w-5xl mx-auto text-center" data-animate="science-el">
+        <h2
+          className="font-display font-bold tracking-tighter mb-8"
+          style={{
+            fontSize: "clamp(2rem, 5vw, 3.75rem)",
+            color: "#fafafa",
+          }}
+        >
+          Não é um corte.{" "}
+          <span style={{ color: "#f1c97d" }}>É engenharia de imagem.</span>
+        </h2>
 
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24 items-center">
-        {/* Lado Esquerdo: Tópico e Texto Principal */}
-        <div className="flex-1 text-center md:text-left">
-          <span
-            className="inline-block font-body uppercase mb-6"
-            style={{
-              fontSize: "11px",
-              letterSpacing: "0.25em",
-              color: "rgba(255,255,255,0.3)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: "9999px",
-              padding: "6px 20px",
-            }}
-          >
-            A Engenharia da Estética
-          </span>
+        <p
+          className="font-body leading-relaxed max-w-3xl mx-auto mb-20"
+          style={{
+            fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
+            color: "rgb(161,161,170)",
+          }}
+        >
+          O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos
+          as linhas de força do seu rosto, a sua estrutura óssea e o seu momento
+          profissional para desenhar a estética que projeta a sua melhor versão.
+        </p>
 
-          <h2
-            data-animate="science-title"
-            className="font-display font-bold leading-[1.1] tracking-tight mb-8"
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3.75rem)",
-              color: "#fafafa",
-            }}
-          >
-            Não é um corte. <br className="hidden md:block" />
-            <span style={{ color: "#f1c97d" }}>É engenharia de imagem.</span>
-          </h2>
-
-          <p
-            data-animate="science-text"
-            className="font-body leading-relaxed max-w-lg mx-auto md:mx-0"
-            style={{
-              fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
-              color: "rgba(255,255,255,0.6)",
-            }}
-          >
-            O Visagismo Arquitetônico da Spazio mapeia as linhas de força do seu
-            rosto, a sua estrutura óssea e o seu momento profissional para
-            desenhar a estética que projeta a sua melhor versão.
-          </p>
-        </div>
-
-        {/* Lado Direito: Grid de Processos */}
-        <div className="flex-1 w-full flex flex-col gap-6">
+        {/* Process Grid — 3 columns, separated by border-t */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16"
+          style={{ borderTop: "1px solid rgb(39,39,42)" }}
+        >
           {PROCESS_STEPS.map((step, idx) => (
-            <div
-              key={idx}
-              data-animate="science-step"
-              className="flex items-start gap-6 group"
-              style={{
-                borderBottom:
-                  idx !== PROCESS_STEPS.length - 1
-                    ? "1px solid rgba(255,255,255,0.05)"
-                    : "none",
-                paddingBottom: idx !== PROCESS_STEPS.length - 1 ? "1.5rem" : "0",
-              }}
-            >
-              <span
-                className="font-display font-light"
-                style={{
-                  fontSize: "2rem",
-                  color: "rgba(241,201,125,0.4)",
-                  lineHeight: "1",
-                }}
+            <div key={idx} className="text-left" data-animate="science-el">
+              <div
+                className="font-display font-bold mb-4"
+                style={{ fontSize: "1.25rem", color: "#f1c97d" }}
               >
-                0{step.num}
-              </span>
-              <div>
-                <h3
-                  className="font-display font-bold mb-2 transition-colors duration-300"
-                  style={{
-                    fontSize: "1.25rem",
-                    color: "#fafafa",
-                  }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  className="font-body"
-                  style={{
-                    fontSize: "0.95rem",
-                    color: "rgba(255,255,255,0.4)",
-                  }}
-                >
-                  {step.desc}
-                </p>
+                {step.title}
               </div>
+              <p
+                className="font-body text-sm"
+                style={{ color: "rgb(113,113,122)" }}
+              >
+                {step.desc}
+              </p>
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/sections/HeroSection";
+import { SpazioExperience } from "@/components/sections/SpazioExperience";
 import { VisagismScience } from "@/components/sections/VisagismScience";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { TransformationShowcase } from "@/components/sections/TransformationShowcase";
@@ -7,28 +8,24 @@ import { ConciergeTrigger } from "@/components/ui/ConciergeTrigger";
 /**
  * Home Page — Barbearia Spazio
  *
- * Ponto de entrada da Landing Page. Compõe as seções
- * da página de forma declarativa.
+ * Landing Page composition following the code.html prototype order.
  *
- * Fluxo visual (High-Ticket 2026):
- * 1. Hero (fundo escuro #050505) — Impacto inicial
- * 2. VisagismScience (fundo escuro #050505) — Autoridade do método
- * 3. ServicesGrid (transição para #fafafa) — Bento Grid de consultoria
- * 4. TransformationShowcase (fundo claro #fafafa) — Vídeo de cases reais
- * 5. ConciergeTrigger (flutuante) — Pílula IA agêntica
- *
- * Arquitetura:
- * - Cada seção é um componente isolado em /components/sections/
- * - A lógica de animação vive em hooks dedicados em /hooks/
- * - Esta page.tsx permanece limpa e focada na composição
+ * Visual flow (High-Ticket 2026):
+ * 1. Hero (Dark #050505) — Impact statement + primary CTA
+ * 2. SpazioExperience (Split: Ice left / Dark right) — Price objection breaker
+ * 3. VisagismScience (Dark #0a0a0a) — Method authority + 3-step process
+ * 4. TransformationShowcase (Ice #fafafa) — Video case study
+ * 5. ServicesGrid (Ice #fafafa) — Bento grid with pricing
+ * 6. ConciergeTrigger (Floating) — Agentic AI pill
  */
 export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <SpazioExperience />
       <VisagismScience />
-      <ServicesGrid />
       <TransformationShowcase />
+      <ServicesGrid />
       <ConciergeTrigger />
     </>
   );

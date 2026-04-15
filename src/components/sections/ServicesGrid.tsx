@@ -8,29 +8,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * ServicesGrid — Bento Grid Assimétrico de Consultoria High-Ticket
+ * ServicesGrid — Bento Grid Assimétrico (md:grid-cols-12)
  *
- * Seção sobre fundo claro (#fafafa) que contrasta com o Hero escuro.
- * Transição suave via gradiente dark→ice no topo.
+ * Follows code.html prototype exactly:
+ * - Main card: col-span-7, dark bg, image overlay, 600px tall
+ * - Side card 1: col-span-5, surface dark, Visagismo Óptico
+ * - Side card 2: col-span-5, ice bg, Ritual de Barba
+ * - Bottom card: col-span-7, image
  *
- * Layout do grid (desktop):
- * ┌──────────────────────┬────────────────┐
- * │  Card 01 (Destaque)  │  Card 02       │
- * │  Visagismo Arquit.   │  Social Proof  │
- * │  2 colunas, escuro   │  1 col, branco │
- * ├──────────────────────┴────────────────┤
- * │  Card 03 — Visagismo Óptico + Citação │
- * │  Full width, branco                    │
- * └────────────────────────────────────────┘
- *
- * Animação: Stagger scroll-triggered com GSAP ScrollTrigger.batch
+ * DESIGN.md rules applied:
+ * - rounded-3xl (2rem) on all cards
+ * - No divider lines — spacing only
+ * - Champagne/Ouro used sparingly for actions
  */
 
-/** Ícone de estrela inline para performance */
 function StarIcon() {
   return (
     <svg
-      className="w-5 h-5"
+      className="w-4 h-4"
       style={{ color: "#f1c97d" }}
       fill="currentColor"
       viewBox="0 0 20 20"
@@ -49,17 +44,16 @@ export function ServicesGrid() {
       const section = sectionRef.current;
       if (!section) return;
 
-      const cards = section.querySelectorAll("[data-animate='service-card']");
+      const elements = section.querySelectorAll("[data-animate='grid-el']");
+      gsap.set(elements, { opacity: 0, y: 40 });
 
-      gsap.set(cards, { opacity: 0, y: 60 });
-
-      ScrollTrigger.batch(cards, {
+      ScrollTrigger.batch(elements, {
         onEnter: (batch) => {
           gsap.to(batch, {
             opacity: 1,
             y: 0,
-            duration: 0.9,
-            stagger: 0.15,
+            duration: 1,
+            stagger: 0.12,
             ease: "power3.out",
           });
         },
@@ -74,317 +68,225 @@ export function ServicesGrid() {
     <section
       ref={sectionRef}
       id="servicos"
-      className="relative w-full"
+      className="w-full"
       style={{
         backgroundColor: "#fafafa",
-        paddingTop: "clamp(4rem, 10vw, 8rem)",
-        paddingBottom: "clamp(4rem, 10vw, 8rem)",
+        paddingTop: "clamp(4rem, 10vw, 12rem)",
+        paddingBottom: "clamp(4rem, 10vw, 12rem)",
         paddingLeft: "1.5rem",
         paddingRight: "1.5rem",
       }}
-      aria-label="Consultoria de Imagem — Serviços"
+      aria-label="Engenharia Estética Aplicada — Serviços"
     >
-      {/* ─── Transition Gradient: Dark → Ice ─── */}
-      <div
-        className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: "160px",
-          background: "linear-gradient(180deg, #050505 0%, #fafafa 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* ─── Section Header ─── */}
-        <div className="text-center mb-16">
-          <span
-            className="inline-block font-body uppercase mb-4"
-            style={{
-              fontSize: "11px",
-              letterSpacing: "0.3em",
-              color: "#555555",
-            }}
-          >
-            Consultoria de Imagem
-          </span>
-          <h2
-            className="font-display font-bold leading-[1.1] tracking-tight"
-            style={{
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              color: "#1a1a1a",
-            }}
-          >
-            A Arquitetura do{" "}
-            <span className="font-light" style={{ color: "#1a1a1a" }}>
-              Seu Estilo
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header — asymmetric (left title, right metadata) */}
+        <div
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8"
+          data-animate="grid-el"
+        >
+          <div className="max-w-2xl">
+            <span
+              className="font-display font-bold uppercase block mb-6"
+              style={{
+                fontSize: "12px",
+                letterSpacing: "0.3em",
+                color: "rgb(161,161,170)",
+              }}
+            >
+              Curated Services
             </span>
-          </h2>
+            <h2
+              className="font-display font-extrabold tracking-tighter leading-none"
+              style={{
+                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                color: "rgb(24,24,27)",
+              }}
+            >
+              Engenharia Estética Aplicada.
+            </h2>
+          </div>
+          <div
+            className="font-body font-medium text-right uppercase"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.2em",
+              color: "rgb(113,113,122)",
+            }}
+          >
+            Price List / MMXXVI
+          </div>
         </div>
 
-        {/* ─── Bento Grid ─── */}
-        <div
-          className="grid gap-5"
-          style={{
-            gridTemplateColumns: "1fr",
-          }}
-        >
-          {/* Row 1: Two cards side by side on desktop */}
+        {/* Bento Grid — 12 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Main Feature Card — Visagismo Arquitetônico */}
           <div
-            className="grid gap-5"
+            data-animate="grid-el"
+            className="md:col-span-7 relative overflow-hidden group"
             style={{
-              gridTemplateColumns: "repeat(1, 1fr)",
+              backgroundColor: "#1c1b1b",
+              borderRadius: "2rem",
+              height: "600px",
             }}
           >
-            {/* Card 01 — Consultoria de Visagismo Arquitetônico (Dark, Destaque) */}
+            {/* Dark surface placeholder for future image */}
             <div
-              data-animate="service-card"
-              className="relative overflow-hidden flex flex-col justify-between group cursor-default"
-              style={{
-                backgroundColor: "#1a1a1a",
-                borderRadius: "2.5rem",
-                padding: "clamp(2rem, 4vw, 3.5rem)",
-                minHeight: "380px",
-                gridColumn: "1 / -1",
-              }}
-            >
-              {/* Background glow */}
-              <div
-                className="absolute top-0 right-0 pointer-events-none"
-                style={{
-                  width: "320px",
-                  height: "320px",
-                  background:
-                    "radial-gradient(circle, rgba(241,201,125,0.07) 0%, transparent 70%)",
-                }}
-                aria-hidden="true"
-              />
-
-              <div className="relative z-10">
-                <span
-                  className="inline-block font-body uppercase"
-                  style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.25em",
-                    color: "#f1c97d",
-                    border: "1px solid rgba(241,201,125,0.2)",
-                    borderRadius: "9999px",
-                    padding: "6px 16px",
-                    marginBottom: "24px",
-                  }}
-                >
-                  Serviço Principal
-                </span>
-
-                <h3
-                  className="font-display font-bold leading-[1.2] mb-3"
-                  style={{
-                    fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-                    color: "#ffffff",
-                  }}
-                >
-                  Consultoria de Visagismo Arquitetônico
-                </h3>
-
-                <p
-                  className="font-body leading-relaxed max-w-lg mb-3"
-                  style={{
-                    fontSize: "15px",
-                    color: "rgba(255,255,255,0.6)",
-                  }}
-                >
-                  Análise profunda de perfil facial e visagismo estratégico para
-                  reposicionamento da sua imagem.
-                </p>
-
-                <span
-                  className="inline-block font-body"
-                  style={{
-                    fontSize: "13px",
-                    color: "rgba(241,201,125,0.8)",
-                  }}
-                >
-                  Com Jonathan
-                </span>
-              </div>
-
-              <div className="relative z-10 mt-8 flex items-end justify-between">
-                <span
-                  className="font-display font-bold"
-                  style={{
-                    fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
-                    color: "#ffffff",
-                  }}
-                >
-                  R$ 800,00
-                </span>
-                <span
-                  className="font-body uppercase"
-                  style={{
-                    fontSize: "11px",
-                    letterSpacing: "0.2em",
-                    color: "rgba(255,255,255,0.3)",
-                  }}
-                >
-                  por sessão
-                </span>
-              </div>
-            </div>
-
-            {/* Card 02 — Social Proof */}
+              className="absolute inset-0"
+              style={{ backgroundColor: "#1c1b1b" }}
+              aria-hidden="true"
+            />
             <div
-              data-animate="service-card"
-              className="relative overflow-hidden flex flex-col justify-center items-center text-center"
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e8e8e8",
-                borderRadius: "2.5rem",
-                padding: "clamp(2rem, 4vw, 2.5rem)",
-                minHeight: "380px",
-                gridColumn: "1 / -1",
-              }}
+              className="absolute inset-0 flex flex-col justify-end"
+              style={{ padding: "clamp(2rem, 4vw, 3rem)" }}
             >
-              {/* Star rating */}
-              <div
-                className="flex items-center gap-1 mb-4"
-                aria-label="Avaliação 4.9 de 5 estrelas"
-              >
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} />
-                ))}
+              <div className="flex justify-between items-end">
+                <div>
+                  <h3
+                    className="font-display font-bold tracking-tighter mb-2"
+                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fafafa" }}
+                  >
+                    Visagismo Arquitetônico
+                  </h3>
+                  <p className="font-body text-sm max-w-xs mb-6" style={{ color: "rgb(161,161,170)" }}>
+                    Análise profunda de perfil facial e visagismo estratégico para reposicionamento da sua imagem.
+                  </p>
+                  <a
+                    href="https://wa.me/5548999999999"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block font-bold text-sm tracking-tighter rounded-full"
+                    style={{
+                      backgroundColor: "#f1c97d",
+                      color: "#0a0a0a",
+                      padding: "10px 24px",
+                    }}
+                  >
+                    Reserve Your Session
+                  </a>
+                </div>
+                <span
+                  className="font-display font-black italic"
+                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#f1c97d" }}
+                >
+                  R$ 800
+                </span>
               </div>
-
-              <span
-                className="font-display font-bold mb-2"
-                style={{
-                  fontSize: "clamp(3rem, 5vw, 4rem)",
-                  color: "#1a1a1a",
-                  lineHeight: 1,
-                }}
-              >
-                4.9
-              </span>
-
-              <span
-                className="font-body mb-6"
-                style={{
-                  fontSize: "13px",
-                  color: "#555555",
-                }}
-              >
-                258 avaliações verificadas no Google Maps
-              </span>
-
-              <div
-                className="mx-auto mb-6"
-                style={{
-                  width: "48px",
-                  height: "1px",
-                  background: "rgba(241,201,125,0.3)",
-                }}
-                aria-hidden="true"
-              />
-
-              <p
-                className="font-body leading-relaxed max-w-[260px]"
-                style={{
-                  fontSize: "15px",
-                  color: "#555555",
-                }}
-              >
-                A autoridade máxima em visagismo na Pedra Branca
-              </p>
             </div>
           </div>
 
-          {/* Card 03 — Visagismo Óptico (Full width) + Citação */}
+          {/* Side Card — Visagismo Óptico */}
           <div
-            data-animate="service-card"
-            className="relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8 group cursor-default"
+            data-animate="grid-el"
+            className="md:col-span-5 flex flex-col justify-between"
             style={{
-              backgroundColor: "#ffffff",
-              border: "1px solid #e8e8e8",
-              borderRadius: "2.5rem",
-              padding: "clamp(2rem, 4vw, 3.5rem)",
+              backgroundColor: "#201f1f",
+              borderRadius: "2rem",
+              padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            <div className="flex-1">
-              <span
-                className="inline-block font-body uppercase mb-4"
-                style={{
-                  fontSize: "10px",
-                  letterSpacing: "0.25em",
-                  color: "#c9a35e",
-                  border: "1px solid rgba(201,163,94,0.2)",
-                  borderRadius: "9999px",
-                  padding: "6px 16px",
-                }}
-              >
-                Especialidade
-              </span>
-
+            <div>
+              <div
+                className="mb-12"
+                style={{ width: "48px", height: "1px", backgroundColor: "#f1c97d" }}
+                aria-hidden="true"
+              />
               <h3
-                className="font-display font-bold leading-[1.2] mb-3"
-                style={{
-                  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-                  color: "#1a1a1a",
-                }}
+                className="font-display font-bold tracking-tighter mb-4"
+                style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#fafafa" }}
               >
-                Visagismo Óptico e Estética Masculina
+                Visagismo Óptico
               </h3>
-
-              <p
-                className="font-body leading-relaxed max-w-xl mb-6"
-                style={{
-                  fontSize: "15px",
-                  color: "#555555",
-                }}
-              >
-                Harmonização visual entre corte, barba e traços faciais. Cada
-                detalhe calculado para projetar a melhor versão da sua imagem.
+              <p className="font-body text-sm leading-relaxed" style={{ color: "rgb(161,161,170)" }}>
+                Consultoria para escolha de armações e acessórios que complementam seu formato de rosto e traços naturais.
               </p>
-
-              {/* Citação de prova social embutida */}
-              <blockquote
-                className="relative"
-                style={{
-                  paddingLeft: "20px",
-                  borderLeft: "2px solid rgba(241,201,125,0.4)",
-                }}
-              >
-                <p
-                  className="font-display italic"
-                  style={{
-                    fontSize: "clamp(1rem, 1.8vw, 1.15rem)",
-                    color: "#1a1a1a",
-                    lineHeight: 1.5,
-                  }}
-                >
-                  &ldquo;Não é um corte, é um reposicionamento de imagem.&rdquo;
-                </p>
-              </blockquote>
             </div>
+            <div className="mt-auto pt-12">
+              <div
+                className="font-body uppercase mb-2"
+                style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgb(113,113,122)" }}
+              >
+                Exclusive Add-on
+              </div>
+              <span
+                className="font-bold tracking-tight"
+                style={{ fontSize: "1.5rem", color: "#fafafa" }}
+              >
+                Sob Consulta
+              </span>
+            </div>
+          </div>
 
-            {/* Decorative orb */}
+          {/* Side Card — Ritual de Barba */}
+          <div
+            data-animate="grid-el"
+            className="md:col-span-5 relative overflow-hidden flex flex-col justify-between"
+            style={{
+              backgroundColor: "#fafafa",
+              border: "1px solid rgb(228,228,231)",
+              borderRadius: "2rem",
+              padding: "clamp(2rem, 4vw, 3rem)",
+            }}
+          >
+            <div className="relative z-10">
+              <h3
+                className="font-display font-bold tracking-tighter mb-4"
+                style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
+              >
+                Ritual Spazio de Barba
+              </h3>
+              <p className="font-body text-sm leading-relaxed" style={{ color: "rgb(82,82,91)" }}>
+                Relaxamento e precisão. Toalhas quentes, óleos essenciais e o acabamento impecável da arquitetura facial.
+              </p>
+            </div>
+            <div className="relative z-10 mt-12">
+              <span
+                className="font-black italic"
+                style={{ fontSize: "1.75rem", color: "rgb(24,24,27)" }}
+              >
+                R$ 180
+              </span>
+            </div>
+            {/* Decorative circle */}
             <div
-              className="flex-shrink-0 flex items-center justify-center"
+              className="absolute -right-8 -bottom-8"
               style={{
-                width: "96px",
-                height: "96px",
+                width: "192px",
+                height: "192px",
                 borderRadius: "50%",
-                background:
-                  "linear-gradient(135deg, rgba(241,201,125,0.1) 0%, rgba(201,163,94,0.05) 100%)",
+                border: "1px solid rgb(244,244,245)",
               }}
               aria-hidden="true"
-            >
-              <div
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  borderRadius: "50%",
-                  backgroundColor: "#f1c97d",
-                }}
-              />
+            />
+          </div>
+
+          {/* Social Proof Card */}
+          <div
+            data-animate="grid-el"
+            className="md:col-span-7 flex flex-col justify-center items-center text-center"
+            style={{
+              backgroundColor: "#201f1f",
+              borderRadius: "2rem",
+              padding: "clamp(2rem, 4vw, 3rem)",
+              minHeight: "280px",
+            }}
+          >
+            <div className="flex gap-1 mb-4" aria-label="4.9 de 5 estrelas">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon key={i} />
+              ))}
             </div>
+            <span
+              className="font-display font-black mb-1"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#f1c97d", lineHeight: 1 }}
+            >
+              4.9 / 5.0
+            </span>
+            <p
+              className="font-body uppercase mt-3"
+              style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgb(113,113,122)" }}
+            >
+              Baseado em 258 avaliações reais de clientes exigentes.
+            </p>
           </div>
         </div>
       </div>
