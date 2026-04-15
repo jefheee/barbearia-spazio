@@ -10,9 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * ServicesGrid — Bento Grid Assimétrico (md:grid-cols-12)
  *
- * Proper container alignment: max-w-7xl mx-auto px-4 md:px-8.
- * Main card updated with Jonathan's real authority text.
- * All cards with rounded-3xl.
+ * Container: max-w-7xl mx-auto px-6 lg:px-12.
+ * Text blocks: max-w-2xl where needed.
+ * All cards: rounded-3xl (2rem).
  */
 
 function StarIcon() {
@@ -69,7 +69,7 @@ export function ServicesGrid() {
       }}
       aria-label="Engenharia Estética Aplicada — Serviços"
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div
           className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8"
@@ -87,7 +87,7 @@ export function ServicesGrid() {
               Curated Services
             </span>
             <h2
-              className="font-display font-extrabold tracking-tighter leading-none"
+              className="font-display font-extrabold tracking-tighter leading-snug"
               style={{
                 fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                 color: "rgb(24,24,27)",
@@ -110,7 +110,7 @@ export function ServicesGrid() {
 
         {/* Bento Grid — 12 columns */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Main Feature Card — Consultoria Visagista com Jonathan */}
+          {/* Main Feature Card */}
           <div
             data-animate="grid-el"
             className="md:col-span-7 relative overflow-hidden group flex flex-col justify-end"
@@ -133,7 +133,7 @@ export function ServicesGrid() {
                 Serviço Principal
               </span>
               <h3
-                className="font-display font-bold tracking-tighter mb-3"
+                className="font-display font-bold tracking-tighter mb-3 leading-snug"
                 style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fafafa" }}
               >
                 Consultoria Visagista com Jonathan
@@ -187,7 +187,7 @@ export function ServicesGrid() {
                 aria-hidden="true"
               />
               <h3
-                className="font-display font-bold tracking-tighter mb-4"
+                className="font-display font-bold tracking-tighter mb-4 leading-snug"
                 style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#fafafa" }}
               >
                 Visagismo Óptico
@@ -229,7 +229,7 @@ export function ServicesGrid() {
           >
             <div className="relative z-10">
               <h3
-                className="font-display font-bold tracking-tighter mb-4"
+                className="font-display font-bold tracking-tighter mb-4 leading-snug"
                 style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
               >
                 Ritual Spazio de Barba
@@ -250,7 +250,6 @@ export function ServicesGrid() {
                 R$ 180
               </span>
             </div>
-            {/* Decorative circle */}
             <div
               className="absolute -right-8 -bottom-8"
               style={{

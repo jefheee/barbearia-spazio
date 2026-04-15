@@ -8,141 +8,233 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * TransformationShowcase — Video + Impact Statement
+ * TransformationShowcase — Before/After Scroll-Driven Wipe Effect
  *
- * Matches code.html prototype:
- * - Ice bg (#fafafa)
- * - Two-column: video left (9:16, rounded-3xl), text right
- * - Text: "A diferença entre ser visto e *ser lembrado.*" (italic zinc-400)
- * - h-px divider line + description below
- * - Play button: white/20 backdrop-blur-xl glassmorphism
+ * Awwwards-level interaction:
+ * - h-[200vh] outer container for scroll distance
+ * - h-screen pinned inner with two stacked images (absolute inset-0)
+ * - Bottom layer: "Antes" (desaturated, low-energy placeholder)
+ * - Top layer: "Depois" (vibrant, high-energy placeholder)
+ * - GSAP ScrollTrigger with scrub:true, pin:true animates
+ *   clip-path from inset(0 100% 0 0) → inset(0 0% 0 0) (L→R wipe)
+ * - Centered divider line + "Antes / Depois" labels
+ *
+ * Uses generic color placeholders. Swap for real images later.
  */
 
-function PlayIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
 export function TransformationShowcase() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const afterImageRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
-      if (!section) return;
+      const afterImage = afterImageRef.current;
+      const label = labelRef.current;
+      if (!section || !afterImage || !label) return;
 
-      const elements = section.querySelectorAll("[data-animate='showcase-el']");
-      gsap.set(elements, { opacity: 0, y: 40 });
-
-      ScrollTrigger.batch(elements, {
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power3.out",
-          });
+      // Pin the showcase area and animate clip-path on scroll
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+          pin: ".showcase-pin-target",
+          pinSpacing: false,
         },
-        start: "top 85%",
-        once: true,
       });
+
+      // Wipe: reveal "Depois" image from left to right via clip-path
+      tl.fromTo(
+        afterImage,
+        { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 1, ease: "none" }
+      );
+
+      // Animate the divider label position
+      tl.fromTo(
+        label,
+        { left: "0%" },
+        { left: "100%", duration: 1, ease: "none" },
+        0
+      );
     },
     { scope: sectionRef }
   );
 
   return (
-    <section
+    <div
       ref={sectionRef}
-      className="w-full"
-      style={{
-        backgroundColor: "#fafafa",
-        paddingTop: "clamp(5rem, 10vw, 12rem)",
-        paddingBottom: "clamp(5rem, 10vw, 12rem)",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
-      }}
-      aria-label="Resultados — A diferença entre ser visto e ser lembrado"
+      className="relative"
+      style={{ height: "200vh" }}
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-16 md:gap-24">
-          {/* Left: Video Container (9:16) */}
-          <div className="w-full md:w-1/2" data-animate="showcase-el">
-            <div
-              className="w-full max-w-[400px] mx-auto relative overflow-hidden group"
-              style={{
-                aspectRatio: "9 / 16",
-                backgroundColor: "#e4e4e7",
-                borderRadius: "2rem",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-                cursor: "pointer",
-              }}
-              role="button"
-              aria-label="Reproduzir vídeo de transformação"
-            >
-              {/* Placeholder dark surface */}
+      {/* Pinned viewport */}
+      <div className="showcase-pin-target relative w-full h-screen overflow-hidden">
+        {/* "Antes" Layer — muted, low-energy (bottom) */}
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ backgroundColor: "#1c1b1b" }}
+          aria-label="Antes da consultoria"
+        >
+          {/* Placeholder pattern: subtle grid lines */}
+          <div className="absolute inset-0 opacity-10" aria-hidden="true">
+            {[...Array(8)].map((_, i) => (
               <div
-                className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundColor: "#27272a" }}
-                aria-hidden="true"
-              />
-
-              {/* Play button — glassmorphism */}
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                key={i}
+                className="absolute"
                 style={{
-                  width: "80px",
-                  height: "80px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(255,255,255,0.2)",
-                  backdropFilter: "blur(24px)",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  color: "white",
+                  left: `${(i + 1) * 12.5}%`,
+                  top: 0,
+                  bottom: 0,
+                  width: "1px",
+                  backgroundColor: "rgba(255,255,255,0.15)",
                 }}
-              >
-                <span className="ml-1">
-                  <PlayIcon />
-                </span>
-              </div>
-            </div>
+              />
+            ))}
           </div>
-
-          {/* Right: Text + Statement */}
-          <div className="w-full md:w-1/2" data-animate="showcase-el">
+          <div className="text-center relative z-10 px-6">
+            <span
+              className="font-display font-bold uppercase block mb-4"
+              style={{
+                fontSize: "12px",
+                letterSpacing: "0.3em",
+                color: "rgb(113,113,122)",
+              }}
+            >
+              Antes
+            </span>
             <h2
-              className="font-display font-extrabold tracking-tighter leading-none mb-8"
+              className="font-display font-extrabold tracking-tighter leading-snug"
               style={{
-                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-                color: "rgb(24,24,27)",
+                fontSize: "clamp(2rem, 5vw, 4rem)",
+                color: "rgb(63,63,70)",
               }}
             >
-              A diferença entre ser visto e{" "}
-              <span className="italic" style={{ color: "rgb(161,161,170)" }}>
-                ser lembrado.
-              </span>
+              A versão que o espelho<br />não questiona.
             </h2>
-            <div
-              className="mb-8"
+          </div>
+        </div>
+
+        {/* "Depois" Layer — vibrant, gold accents (top, clip-path animated) */}
+        <div
+          ref={afterImageRef}
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            backgroundColor: "#0a0a0a",
+            clipPath: "inset(0 100% 0 0)",
+          }}
+          aria-label="Depois da consultoria Spazio"
+        >
+          {/* Subtle gold accent line */}
+          <div
+            className="absolute top-0 left-0 right-0"
+            style={{
+              height: "2px",
+              background: "linear-gradient(to right, transparent, #f1c97d, transparent)",
+            }}
+            aria-hidden="true"
+          />
+          <div className="text-center relative z-10 px-6">
+            <span
+              className="font-display font-bold uppercase block mb-4"
               style={{
-                width: "96px",
-                height: "1px",
-                backgroundColor: "rgb(24,24,27)",
+                fontSize: "12px",
+                letterSpacing: "0.3em",
+                color: "#f1c97d",
               }}
-              aria-hidden="true"
-            />
-            <p
-              className="font-body font-medium max-w-md"
-              style={{ color: "rgb(113,113,122)" }}
             >
-              Assista como a consultoria estratégica transforma não apenas o
-              visual, mas a confiança de líderes que frequentam o Spazio.
+              Depois
+            </span>
+            <h2
+              className="font-display font-extrabold tracking-tighter leading-snug"
+              style={{
+                fontSize: "clamp(2rem, 5vw, 4rem)",
+                color: "#fafafa",
+              }}
+            >
+              A versão que o mercado<br />não esquece.
+            </h2>
+            <p
+              className="font-body max-w-md mx-auto mt-8"
+              style={{
+                fontSize: "clamp(0.9rem, 1.2vw, 1rem)",
+                color: "rgb(161,161,170)",
+              }}
+            >
+              Visagismo Arquitetônico aplicado. Cada detalhe projetado
+              para comunicar competência, confiança e autoridade.
             </p>
           </div>
         </div>
+
+        {/* Moving Divider Line — follows the wipe edge */}
+        <div
+          ref={labelRef}
+          className="absolute top-0 bottom-0 z-20 pointer-events-none"
+          style={{ left: "0%", width: "2px" }}
+        >
+          <div
+            className="h-full"
+            style={{
+              width: "2px",
+              background: "linear-gradient(to bottom, transparent 10%, #f1c97d 50%, transparent 90%)",
+            }}
+          />
+          {/* Label pill */}
+          <div
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
+            style={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              backgroundColor: "#f1c97d",
+            }}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#0a0a0a"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
+              <path d="M18 8L6 12L18 16" />
+              <path d="M6 8L18 12L6 16" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Fixed bottom labels */}
+        <div
+          className="absolute bottom-8 left-0 right-0 z-20 flex justify-between pointer-events-none"
+          style={{ padding: "0 clamp(1.5rem, 5vw, 4rem)" }}
+        >
+          <span
+            className="font-body uppercase"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.2em",
+              color: "rgb(113,113,122)",
+            }}
+          >
+            Scroll para revelar
+          </span>
+          <span
+            className="font-body uppercase"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.2em",
+              color: "rgb(113,113,122)",
+            }}
+          >
+            Before / After
+          </span>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

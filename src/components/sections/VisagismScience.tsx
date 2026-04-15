@@ -11,11 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
  * VisagismScience — The Science of Visagism
  *
  * Centered layout on dark bg (#0a0a0a).
- * Big centered headline + paragraph, then 3-column process grid
- * separated by border-t zinc-800.
- *
- * Proper containers: max-w-7xl with px-4 md:px-8.
- * Text blocks limited to max-w-3xl for reading comfort.
+ * Containers: max-w-7xl mx-auto px-6 lg:px-12.
+ * Text blocks: max-w-2xl for reading comfort.
  */
 
 const PROCESS_STEPS = [
@@ -72,7 +69,7 @@ export function VisagismScience() {
       }}
       aria-label="A Ciência do Visagismo"
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 text-center" data-animate="science-el">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center" data-animate="science-el">
         <h2
           className="font-display font-bold tracking-tighter mb-8"
           style={{
@@ -85,7 +82,7 @@ export function VisagismScience() {
         </h2>
 
         <p
-          className="font-body leading-relaxed max-w-3xl mx-auto mb-20"
+          className="font-body leading-relaxed max-w-2xl mx-auto mb-20"
           style={{
             fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
             color: "rgb(161,161,170)",
@@ -111,7 +108,7 @@ export function VisagismScience() {
                 {step.title}
               </div>
               <p
-                className="font-body text-sm leading-relaxed"
+                className="font-body text-sm leading-relaxed max-w-xs"
                 style={{ color: "rgb(113,113,122)" }}
               >
                 {step.desc}

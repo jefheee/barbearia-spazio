@@ -6,11 +6,13 @@ import { useHeroAnimation } from "@/hooks/useHeroAnimation";
 /**
  * HeroSection — Primeira Impressão da Spazio
  *
- * Background: Foto real do interior da barbearia (/hero-bg.jpg)
- * com overlay escuro para legibilidade.
- * Layout: Totalmente centralizado, max-w-4xl.
- * Typography: Outfit extrabold, Inter para corpo.
+ * Background: Foto real do interior (/hero-bg.jpg) + overlay escuro.
+ * Layout: Totalmente centralizado, max-w-5xl para respiro generoso.
+ * Typography: Outfit extrabold leading-snug (sem corte de descendentes).
  * Logo "SPAZIO" em Playfair Display (serifada, luxo).
+ *
+ * FIX: `pb-2` nos word-wrappers para evitar clip-path cortar descendentes
+ * como "g", "p", "q". `leading-snug` na h1 para inter-linha confortável.
  */
 
 const HEADLINE_TEXT = "Sua imagem está abrindo ou fechando portas?";
@@ -24,7 +26,7 @@ export function HeroSection() {
       <span
         key={index}
         data-animate="headline-word"
-        className="inline-block will-change-[clip-path,opacity]"
+        className="inline-block will-change-[clip-path,opacity] pb-2"
         style={{ marginRight: "0.3em" }}
       >
         {word}
@@ -39,7 +41,7 @@ export function HeroSection() {
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
       aria-label="Hero — Spazio Consultoria de Imagem"
     >
-      {/* Background Image — Foto real do interior */}
+      {/* Background Image */}
       <Image
         src="/hero-bg.jpg"
         alt="Interior da Barbearia Spazio — cadeiras premium e ambiente climatizado"
@@ -49,20 +51,17 @@ export function HeroSection() {
         quality={90}
       />
 
-      {/* Dark overlay para legibilidade do texto */}
+      {/* Dark overlay */}
       <div
         className="absolute inset-0 z-[1]"
         style={{ backgroundColor: "rgba(10, 10, 10, 0.82)" }}
         aria-hidden="true"
       />
 
-      {/* Content — centralizado */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-4xl mx-auto px-6">
-        {/* Logo SPAZIO — fonte serifada de luxo */}
-        <div
-          data-animate="decor-line"
-          className="mb-10"
-        >
+      {/* Content — centralizado com max-w-5xl e respiro generoso */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-5xl mx-auto px-6 lg:px-12">
+        {/* Logo SPAZIO */}
+        <div data-animate="decor-line" className="mb-8">
           <span
             className="tracking-[0.35em] uppercase"
             style={{
@@ -70,7 +69,6 @@ export function HeroSection() {
               fontSize: "clamp(1rem, 2vw, 1.4rem)",
               fontWeight: 500,
               color: "#f1c97d",
-              letterSpacing: "0.35em",
             }}
           >
             SPAZIO
@@ -79,7 +77,7 @@ export function HeroSection() {
 
         {/* Kicker */}
         <span
-          className="inline-block font-display font-bold uppercase mb-8"
+          className="inline-block font-display font-bold uppercase mb-10"
           style={{
             fontSize: "11px",
             letterSpacing: "0.3em",
@@ -89,24 +87,23 @@ export function HeroSection() {
           The Architectural Groomer
         </span>
 
-        {/* Headline */}
+        {/* Headline — leading-snug para não cortar descendentes */}
         <h1
-          className="font-display font-extrabold tracking-tighter mb-10"
+          className="font-display font-extrabold tracking-tighter leading-snug mb-14"
           style={{
             fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
             color: "#fafafa",
-            lineHeight: 0.95,
           }}
         >
           {renderHeadline()}
         </h1>
 
-        {/* Subheadline */}
+        {/* Subheadline — max-w-2xl para conforto de leitura */}
         <p
           data-animate="subheadline"
-          className="font-body leading-relaxed max-w-xl mx-auto mb-12"
+          className="font-body leading-relaxed max-w-2xl mx-auto mb-16"
           style={{
-            fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+            fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
             color: "rgba(250,250,250,0.55)",
           }}
         >
@@ -114,8 +111,8 @@ export function HeroSection() {
           autoridade através da estética.
         </p>
 
-        {/* CTA — centralizado */}
-        <div data-animate="cta" className="flex flex-col items-center gap-4">
+        {/* CTA — espaçamento generoso */}
+        <div data-animate="cta" className="flex flex-col items-center gap-6">
           <a
             href="https://wa.me/5548999999999"
             target="_blank"
@@ -124,7 +121,7 @@ export function HeroSection() {
             style={{
               backgroundColor: "#f1c97d",
               color: "#0a0a0a",
-              padding: "18px 48px",
+              padding: "20px 52px",
             }}
           >
             Iniciar Transformação

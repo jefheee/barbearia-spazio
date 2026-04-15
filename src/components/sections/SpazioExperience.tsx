@@ -11,7 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
  * SpazioExperience — Comparativo "O Padrão vs A Consultoria Spazio"
  *
  * Split 50/50: Ice left / Dark right.
- * Injected real address for local trust anchor.
+ * Inner content: max-w-lg with px-6 lg:px-12 on each panel.
+ * Real address injected as local trust anchor.
  */
 
 interface ComparisonItem {
@@ -83,10 +84,11 @@ export function SpazioExperience() {
       {/* Left Panel — "O Padrão" (Ice) */}
       <div
         data-animate="exp-panel"
-        className="w-full md:w-1/2 flex flex-col justify-center"
+        className="w-full md:w-1/2 flex flex-col justify-center px-6 lg:px-12"
         style={{
           backgroundColor: "#fafafa",
-          padding: "clamp(3rem, 6vw, 6rem)",
+          paddingTop: "clamp(3rem, 6vw, 6rem)",
+          paddingBottom: "clamp(3rem, 6vw, 6rem)",
         }}
       >
         <div className="max-w-lg mx-auto md:mx-0 md:ml-auto md:mr-16">
@@ -101,7 +103,7 @@ export function SpazioExperience() {
             Baseline
           </span>
           <h2
-            className="font-display font-extrabold tracking-tighter mb-12"
+            className="font-display font-extrabold tracking-tighter mb-12 leading-snug"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "rgb(24,24,27)",
@@ -119,7 +121,7 @@ export function SpazioExperience() {
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-sm max-w-sm mt-1"
+                  className="font-body text-sm max-w-sm mt-2"
                   style={{ color: "rgb(82,82,91)" }}
                 >
                   {item.desc}
@@ -133,10 +135,11 @@ export function SpazioExperience() {
       {/* Right Panel — "A Consultoria Spazio" (Dark) */}
       <div
         data-animate="exp-panel"
-        className="w-full md:w-1/2 flex flex-col justify-center"
+        className="w-full md:w-1/2 flex flex-col justify-center px-6 lg:px-12"
         style={{
           backgroundColor: "#0a0a0a",
-          padding: "clamp(3rem, 6vw, 6rem)",
+          paddingTop: "clamp(3rem, 6vw, 6rem)",
+          paddingBottom: "clamp(3rem, 6vw, 6rem)",
         }}
       >
         <div className="max-w-lg mx-auto md:mx-0 md:mr-auto md:ml-16">
@@ -151,7 +154,7 @@ export function SpazioExperience() {
             Elite Tier
           </span>
           <h2
-            className="font-display font-extrabold tracking-tighter mb-12"
+            className="font-display font-extrabold tracking-tighter mb-12 leading-snug"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "#fafafa",
@@ -169,7 +172,7 @@ export function SpazioExperience() {
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-sm max-w-sm mt-1"
+                  className="font-body text-sm max-w-sm mt-2"
                   style={{ color: "rgb(161,161,170)" }}
                 >
                   {item.desc}
@@ -178,7 +181,7 @@ export function SpazioExperience() {
             ))}
           </ul>
 
-          {/* Local trust anchor — endereço real */}
+          {/* Local trust anchor */}
           <div
             className="mt-12 pt-8"
             style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
