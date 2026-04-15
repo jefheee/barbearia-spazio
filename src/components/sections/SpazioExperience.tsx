@@ -8,13 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * SpazioExperience — Seção Comparativa "Padrão vs Consultoria"
+ * SpazioExperience — Comparativo "O Padrão vs A Consultoria Spazio"
  *
- * Layout split 50/50 inspirado no code.html prototype.
- * Lado esquerdo: Ice (#fafafa) — "O Padrão" (genérico, baixa opacidade)
- * Lado direito:  Dark (#0a0a0a) — "A Consultoria Spazio" (elite, gold accents)
- *
- * Fundo global dark (#050505). Quebra objeção de preço.
+ * Split 50/50: Ice left / Dark right.
+ * Injected real address for local trust anchor.
  */
 
 interface ComparisonItem {
@@ -41,6 +38,10 @@ const SPAZIO_ITEMS: ComparisonItem[] = [
   {
     title: "Curadoria de Imagem",
     desc: "Atendimento exclusivo, focado em homens de alto valor e decisões estratégicas.",
+  },
+  {
+    title: "Experiência Imersiva",
+    desc: "Ambiente climatizado com cerveja premium e videogame. Sessões de 1h a 2h.",
   },
 ];
 
@@ -88,43 +89,45 @@ export function SpazioExperience() {
           padding: "clamp(3rem, 6vw, 6rem)",
         }}
       >
-        <span
-          className="font-display font-bold uppercase mb-4"
-          style={{
-            fontSize: "12px",
-            letterSpacing: "0.2em",
-            color: "rgb(161,161,170)",
-          }}
-        >
-          Baseline
-        </span>
-        <h2
-          className="font-display font-extrabold tracking-tighter mb-12"
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            color: "rgb(24,24,27)",
-          }}
-        >
-          O Padrão
-        </h2>
-        <ul className="space-y-8">
-          {STANDARD_ITEMS.map((item, i) => (
-            <li key={i} className="flex flex-col">
-              <span
-                className="font-bold uppercase tracking-tight italic"
-                style={{ fontSize: "1.1rem", color: "rgb(24,24,27)" }}
-              >
-                {item.title}
-              </span>
-              <p
-                className="font-body text-sm max-w-xs"
-                style={{ color: "rgb(82,82,91)" }}
-              >
-                {item.desc}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="max-w-lg mx-auto md:mx-0 md:ml-auto md:mr-16">
+          <span
+            className="font-display font-bold uppercase mb-4 block"
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.2em",
+              color: "rgb(161,161,170)",
+            }}
+          >
+            Baseline
+          </span>
+          <h2
+            className="font-display font-extrabold tracking-tighter mb-12"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              color: "rgb(24,24,27)",
+            }}
+          >
+            O Padrão
+          </h2>
+          <ul className="space-y-8">
+            {STANDARD_ITEMS.map((item, i) => (
+              <li key={i} className="flex flex-col">
+                <span
+                  className="font-bold uppercase tracking-tight italic"
+                  style={{ fontSize: "1.1rem", color: "rgb(24,24,27)" }}
+                >
+                  {item.title}
+                </span>
+                <p
+                  className="font-body text-sm max-w-sm mt-1"
+                  style={{ color: "rgb(82,82,91)" }}
+                >
+                  {item.desc}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Right Panel — "A Consultoria Spazio" (Dark) */}
@@ -136,43 +139,62 @@ export function SpazioExperience() {
           padding: "clamp(3rem, 6vw, 6rem)",
         }}
       >
-        <span
-          className="font-display font-bold uppercase mb-4"
-          style={{
-            fontSize: "12px",
-            letterSpacing: "0.2em",
-            color: "#f1c97d",
-          }}
-        >
-          Elite Tier
-        </span>
-        <h2
-          className="font-display font-extrabold tracking-tighter mb-12"
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            color: "#fafafa",
-          }}
-        >
-          A Consultoria Spazio
-        </h2>
-        <ul className="space-y-8">
-          {SPAZIO_ITEMS.map((item, i) => (
-            <li key={i} className="flex flex-col">
-              <span
-                className="font-bold uppercase tracking-tight"
-                style={{ fontSize: "1.1rem", color: "#f1c97d" }}
-              >
-                {item.title}
-              </span>
-              <p
-                className="font-body text-sm max-w-xs"
-                style={{ color: "rgb(161,161,170)" }}
-              >
-                {item.desc}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="max-w-lg mx-auto md:mx-0 md:mr-auto md:ml-16">
+          <span
+            className="font-display font-bold uppercase mb-4 block"
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.2em",
+              color: "#f1c97d",
+            }}
+          >
+            Elite Tier
+          </span>
+          <h2
+            className="font-display font-extrabold tracking-tighter mb-12"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              color: "#fafafa",
+            }}
+          >
+            A Consultoria Spazio
+          </h2>
+          <ul className="space-y-8">
+            {SPAZIO_ITEMS.map((item, i) => (
+              <li key={i} className="flex flex-col">
+                <span
+                  className="font-bold uppercase tracking-tight"
+                  style={{ fontSize: "1.1rem", color: "#f1c97d" }}
+                >
+                  {item.title}
+                </span>
+                <p
+                  className="font-body text-sm max-w-sm mt-1"
+                  style={{ color: "rgb(161,161,170)" }}
+                >
+                  {item.desc}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          {/* Local trust anchor — endereço real */}
+          <div
+            className="mt-12 pt-8"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+          >
+            <p
+              className="font-body uppercase"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.15em",
+                color: "rgb(113,113,122)",
+              }}
+            >
+              Av. Pedra Branca, 303, Sala 03 — Palhoça, SC
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -10,16 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * ServicesGrid — Bento Grid Assimétrico (md:grid-cols-12)
  *
- * Follows code.html prototype exactly:
- * - Main card: col-span-7, dark bg, image overlay, 600px tall
- * - Side card 1: col-span-5, surface dark, Visagismo Óptico
- * - Side card 2: col-span-5, ice bg, Ritual de Barba
- * - Bottom card: col-span-7, image
- *
- * DESIGN.md rules applied:
- * - rounded-3xl (2rem) on all cards
- * - No divider lines — spacing only
- * - Champagne/Ouro used sparingly for actions
+ * Proper container alignment: max-w-7xl mx-auto px-4 md:px-8.
+ * Main card updated with Jonathan's real authority text.
+ * All cards with rounded-3xl.
  */
 
 function StarIcon() {
@@ -73,13 +66,11 @@ export function ServicesGrid() {
         backgroundColor: "#fafafa",
         paddingTop: "clamp(4rem, 10vw, 12rem)",
         paddingBottom: "clamp(4rem, 10vw, 12rem)",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
       }}
       aria-label="Engenharia Estética Aplicada — Serviços"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header — asymmetric (left title, right metadata) */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        {/* Section Header */}
         <div
           className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8"
           data-animate="grid-el"
@@ -118,52 +109,57 @@ export function ServicesGrid() {
         </div>
 
         {/* Bento Grid — 12 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* Main Feature Card — Visagismo Arquitetônico */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* Main Feature Card — Consultoria Visagista com Jonathan */}
           <div
             data-animate="grid-el"
-            className="md:col-span-7 relative overflow-hidden group"
+            className="md:col-span-7 relative overflow-hidden group flex flex-col justify-end"
             style={{
               backgroundColor: "#1c1b1b",
               borderRadius: "2rem",
-              height: "600px",
+              minHeight: "520px",
+              padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            {/* Dark surface placeholder for future image */}
-            <div
-              className="absolute inset-0"
-              style={{ backgroundColor: "#1c1b1b" }}
-              aria-hidden="true"
-            />
-            <div
-              className="absolute inset-0 flex flex-col justify-end"
-              style={{ padding: "clamp(2rem, 4vw, 3rem)" }}
-            >
-              <div className="flex justify-between items-end">
-                <div>
-                  <h3
-                    className="font-display font-bold tracking-tighter mb-2"
-                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fafafa" }}
-                  >
-                    Visagismo Arquitetônico
-                  </h3>
-                  <p className="font-body text-sm max-w-xs mb-6" style={{ color: "rgb(161,161,170)" }}>
-                    Análise profunda de perfil facial e visagismo estratégico para reposicionamento da sua imagem.
-                  </p>
-                  <a
-                    href="https://wa.me/5548999999999"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block font-bold text-sm tracking-tighter rounded-full"
-                    style={{
-                      backgroundColor: "#f1c97d",
-                      color: "#0a0a0a",
-                      padding: "10px 24px",
-                    }}
-                  >
-                    Reserve Your Session
-                  </a>
-                </div>
+            <div>
+              <span
+                className="inline-block font-body uppercase mb-6"
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.2em",
+                  color: "#f1c97d",
+                }}
+              >
+                Serviço Principal
+              </span>
+              <h3
+                className="font-display font-bold tracking-tighter mb-3"
+                style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fafafa" }}
+              >
+                Consultoria Visagista com Jonathan
+              </h3>
+              <p
+                className="font-body text-sm leading-relaxed max-w-md mb-6"
+                style={{ color: "rgb(161,161,170)" }}
+              >
+                Diagnóstico facial completo com foco em cabelo, barba e
+                bem-estar. Cada sessão é desenhada para reposicionar a sua
+                imagem e projetar autoridade no seu ambiente profissional.
+              </p>
+              <div className="flex items-end justify-between">
+                <a
+                  href="https://wa.me/5548999999999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-bold text-sm tracking-tighter rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
+                  style={{
+                    backgroundColor: "#f1c97d",
+                    color: "#0a0a0a",
+                    padding: "12px 28px",
+                  }}
+                >
+                  Agendar Sessão
+                </a>
                 <span
                   className="font-display font-black italic"
                   style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#f1c97d" }}
@@ -196,8 +192,12 @@ export function ServicesGrid() {
               >
                 Visagismo Óptico
               </h3>
-              <p className="font-body text-sm leading-relaxed" style={{ color: "rgb(161,161,170)" }}>
-                Consultoria para escolha de armações e acessórios que complementam seu formato de rosto e traços naturais.
+              <p
+                className="font-body text-sm leading-relaxed max-w-sm"
+                style={{ color: "rgb(161,161,170)" }}
+              >
+                Consultoria para escolha de armações e acessórios que complementam
+                seu formato de rosto e traços naturais.
               </p>
             </div>
             <div className="mt-auto pt-12">
@@ -221,7 +221,7 @@ export function ServicesGrid() {
             data-animate="grid-el"
             className="md:col-span-5 relative overflow-hidden flex flex-col justify-between"
             style={{
-              backgroundColor: "#fafafa",
+              backgroundColor: "#ffffff",
               border: "1px solid rgb(228,228,231)",
               borderRadius: "2rem",
               padding: "clamp(2rem, 4vw, 3rem)",
@@ -234,8 +234,12 @@ export function ServicesGrid() {
               >
                 Ritual Spazio de Barba
               </h3>
-              <p className="font-body text-sm leading-relaxed" style={{ color: "rgb(82,82,91)" }}>
-                Relaxamento e precisão. Toalhas quentes, óleos essenciais e o acabamento impecável da arquitetura facial.
+              <p
+                className="font-body text-sm leading-relaxed max-w-sm"
+                style={{ color: "rgb(82,82,91)" }}
+              >
+                Relaxamento e precisão. Toalhas quentes, óleos essenciais e o
+                acabamento impecável da arquitetura facial.
               </p>
             </div>
             <div className="relative z-10 mt-12">
@@ -282,10 +286,10 @@ export function ServicesGrid() {
               4.9 / 5.0
             </span>
             <p
-              className="font-body uppercase mt-3"
+              className="font-body uppercase mt-3 max-w-sm"
               style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgb(113,113,122)" }}
             >
-              Baseado em 258 avaliações reais de clientes exigentes.
+              Baseado em 258 avaliações reais de clientes exigentes no Google Maps.
             </p>
           </div>
         </div>

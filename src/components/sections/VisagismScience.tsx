@@ -10,11 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * VisagismScience — The Science of Visagism
  *
- * Centered layout on dark bg (#0a0a0a) matching code.html prototype.
+ * Centered layout on dark bg (#0a0a0a).
  * Big centered headline + paragraph, then 3-column process grid
- * separated by border-t border-zinc-800.
+ * separated by border-t zinc-800.
  *
- * NO radial glows, NO decorative gradients (DESIGN.md: "No Gradients").
+ * Proper containers: max-w-7xl with px-4 md:px-8.
+ * Text blocks limited to max-w-3xl for reading comfort.
  */
 
 const PROCESS_STEPS = [
@@ -68,12 +69,10 @@ export function VisagismScience() {
         backgroundColor: "#0a0a0a",
         paddingTop: "clamp(5rem, 10vw, 8rem)",
         paddingBottom: "clamp(5rem, 10vw, 8rem)",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
       }}
       aria-label="A Ciência do Visagismo"
     >
-      <div className="max-w-5xl mx-auto text-center" data-animate="science-el">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 text-center" data-animate="science-el">
         <h2
           className="font-display font-bold tracking-tighter mb-8"
           style={{
@@ -88,8 +87,9 @@ export function VisagismScience() {
         <p
           className="font-body leading-relaxed max-w-3xl mx-auto mb-20"
           style={{
-            fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
+            fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
             color: "rgb(161,161,170)",
+            lineHeight: 1.8,
           }}
         >
           O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos
@@ -97,7 +97,7 @@ export function VisagismScience() {
           profissional para desenhar a estética que projeta a sua melhor versão.
         </p>
 
-        {/* Process Grid — 3 columns, separated by border-t */}
+        {/* Process Grid — 3 columns */}
         <div
           className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16"
           style={{ borderTop: "1px solid rgb(39,39,42)" }}
@@ -111,7 +111,7 @@ export function VisagismScience() {
                 {step.title}
               </div>
               <p
-                className="font-body text-sm"
+                className="font-body text-sm leading-relaxed"
                 style={{ color: "rgb(113,113,122)" }}
               >
                 {step.desc}
