@@ -5,20 +5,38 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 /**
- * ConciergeTrigger — Pílula de Navegação Flutuante (Agentic UI)
+ * ConciergeTrigger — Pílula Flutuante Glassmorphism (Agentic UI)
  *
- * Componente de interface preparado para IA agêntica.
- * Flutua na base da viewport com Glassmorphism e surge
- * 2 segundos após o carregamento com animação elastic fade-up.
+ * Botão fixo na base da viewport para futuro Agente de IA (Antigravity RAG).
  *
  * Design:
  * - Posição: fixed bottom-8, centrado horizontalmente
- * - Visual: Glassmorphism (bg-white/10, backdrop-blur-2xl, border-white/10)
- * - Botão magnético embutido: "Falar com o Concierge Spazio"
- * - z-index alto para ficar acima de todo o conteúdo
+ * - Visual: Glassmorphism escuro (bg-black/80, backdrop-blur-2xl)
+ * - Borda: border-white/10
+ * - Ícone: Faísca sparkle SVG minimalista
+ * - Animação: Float contínuo via CSS + entrada GSAP elastic
  *
- * A animação GSAP é auto-contida neste componente.
+ * z-index 50 para ficar acima de todo o conteúdo.
  */
+
+/** SVG Sparkle icon inline */
+function SparkleIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z" />
+    </svg>
+  );
+}
 
 export function ConciergeTrigger() {
   const pillRef = useRef<HTMLDivElement>(null);
@@ -26,7 +44,6 @@ export function ConciergeTrigger() {
 
   /**
    * Animação de entrada — elastic fade-up com delay de 2s
-   * Simula uma aparição natural e premium.
    */
   useGSAP(() => {
     const pill = pillRef.current;
@@ -45,25 +62,28 @@ export function ConciergeTrigger() {
   });
 
   /**
-   * Efeito magnético subtil no botão interno
+   * Efeito magnético subtil
    */
-  const handleMouseMove = useCallback((e: MouseEvent<HTMLButtonElement>) => {
-    const btn = buttonRef.current;
-    if (!btn) return;
+  const handleMouseMove = useCallback(
+    (e: MouseEvent<HTMLButtonElement>) => {
+      const btn = buttonRef.current;
+      if (!btn) return;
 
-    const rect = btn.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const deltaX = e.clientX - centerX;
-    const deltaY = e.clientY - centerY;
+      const rect = btn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
 
-    gsap.to(btn, {
-      x: deltaX * 0.15,
-      y: deltaY * 0.15,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  }, []);
+      gsap.to(btn, {
+        x: deltaX * 0.12,
+        y: deltaY * 0.12,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    },
+    []
+  );
 
   const handleMouseLeave = useCallback(() => {
     const btn = buttonRef.current;
@@ -78,34 +98,73 @@ export function ConciergeTrigger() {
   }, []);
 
   const handleClick = useCallback(() => {
-    // Placeholder para integração com IA agêntica / chatbot
-    // Pode abrir modal, drawer lateral, ou redirecionar para WhatsApp
-    window.open("https://wa.me/5548999999999", "_blank", "noopener,noreferrer");
+    window.open(
+      "https://wa.me/5548999999999",
+      "_blank",
+      "noopener,noreferrer"
+    );
   }, []);
 
   return (
     <div
       ref={pillRef}
-      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
+      className="fixed z-50"
+      style={{
+        bottom: "32px",
+        left: "50%",
+        transform: "translateX(-50%)",
+      }}
       role="complementary"
       aria-label="Concierge Spazio"
     >
-      <div className="relative rounded-full bg-white/10 backdrop-blur-[40px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-2 py-2">
-        {/* Glow subtil dourado atrás da pílula */}
-        <div className="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(241,201,125,0.06)_0%,transparent_70%)] pointer-events-none" aria-hidden="true" />
-
+      <div
+        className="relative"
+        style={{
+          borderRadius: "9999px",
+          backgroundColor: "rgba(0, 0, 0, 0.80)",
+          backdropFilter: "blur(40px)",
+          WebkitBackdropFilter: "blur(40px)",
+          border: "1px solid rgba(255, 255, 255, 0.10)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+          padding: "8px",
+          animation: "concierge-float 4s ease-in-out infinite",
+        }}
+      >
         <button
           ref={buttonRef}
           onClick={handleClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative z-10 inline-flex items-center gap-3 px-7 py-3 rounded-full bg-primary-gold/10 hover:bg-primary-gold/20 border border-primary-gold/20 hover:border-primary-gold/40 text-white font-body text-[13px] font-medium tracking-[0.08em] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer will-change-transform hover:shadow-[0_0_24px_rgba(241,201,125,0.12)]"
+          className="relative z-10 inline-flex items-center gap-3 cursor-pointer"
+          style={{
+            padding: "12px 28px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(241, 201, 125, 0.08)",
+            border: "1px solid rgba(241, 201, 125, 0.15)",
+            color: "#ffffff",
+            fontFamily: "var(--font-inter), system-ui, sans-serif",
+            fontSize: "13px",
+            fontWeight: 500,
+            letterSpacing: "0.06em",
+            transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            willChange: "transform",
+          }}
+          onMouseEnter={(e) => {
+            const target = e.currentTarget;
+            target.style.backgroundColor = "rgba(241, 201, 125, 0.15)";
+            target.style.borderColor = "rgba(241, 201, 125, 0.3)";
+            target.style.boxShadow =
+              "0 0 24px rgba(241, 201, 125, 0.12)";
+          }}
+          onMouseOut={(e) => {
+            const target = e.currentTarget;
+            target.style.backgroundColor = "rgba(241, 201, 125, 0.08)";
+            target.style.borderColor = "rgba(241, 201, 125, 0.15)";
+            target.style.boxShadow = "none";
+          }}
         >
-          {/* Pulse dot — indica disponibilidade */}
-          <span className="relative flex h-2 w-2" aria-hidden="true">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-gold opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-gold" />
-          </span>
+          {/* Sparkle Icon */}
+          <SparkleIcon />
 
           Falar com o Concierge Spazio
         </button>
