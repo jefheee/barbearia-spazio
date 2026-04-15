@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 
 /**
- * Fontes da Marca Spazio
+ * Fontes da Marca Spazio — Atualização High-Ticket 2026
  *
- * Playfair Display — Serifada com alto contraste de traços,
- * ideal para headlines dramáticas que comunicam luxo e tradição.
+ * Outfit — Geométrica moderna com variação de peso expressiva,
+ * ideal para alternância Bold/Light nas headlines de consultoria.
+ * Substitui Playfair para um posicionamento mais contemporâneo.
  *
- * Plus Jakarta Sans — Geométrica moderna com ótima legibilidade,
- * complementa a Playfair sem competir visualmente.
+ * Inter — A referência em legibilidade para interfaces digitais,
+ * com métricas otimizadas para corpo de texto e UI elements.
  *
  * As fontes são carregadas via next/font/google para:
  * - Zero CLS (Cumulative Layout Shift)
  * - Self-hosting automático (sem requests externos)
  * - Variáveis CSS para uso no Tailwind e GSAP
  */
-const playfairDisplay = Playfair_Display({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-outfit",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-inter",
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -34,19 +35,19 @@ const plusJakartaSans = Plus_Jakarta_Sans({
  * Metadata SEO — Barbearia Spazio
  *
  * Otimizada para search engines e social sharing.
- * Open Graph e Twitter Cards serão adicionados em iterações futuras.
+ * Copy atualizado para posicionamento de consultoria high-ticket.
  */
 export const metadata: Metadata = {
-  title: "Spazio — Barbearia Premium em Pedra Branca",
+  title: "Spazio — Consultoria de Imagem Masculina em Pedra Branca",
   description:
-    "Visagismo avançado e reposicionamento de imagem masculina. A Spazio não é barata — e não vamos mudar isso. Agende sua experiência.",
+    "Visagismo arquitetônico e reposicionamento de imagem masculina. Consultoria de imagem a partir de R$ 800. Para homens que exigem o seu melhor estilo.",
   keywords: [
-    "barbearia premium",
-    "visagismo masculino",
+    "consultoria de imagem masculina",
+    "visagismo arquitetônico",
     "Pedra Branca",
-    "corte de cabelo premium",
-    "barba premium",
+    "barbearia premium",
     "Spazio",
+    "Jonathan visagista",
   ],
   authors: [{ name: "Barbearia Spazio" }],
   robots: "index, follow",
@@ -56,8 +57,8 @@ export const metadata: Metadata = {
  * Root Layout — Barbearia Spazio
  *
  * Estrutura base de toda a aplicação:
- * - Fundo estrito #050505 (negro profundo)
- * - Fontes Playfair + Jakarta Sans via CSS variables
+ * - Fontes Outfit + Inter via CSS variables
+ * - suppressHydrationWarning para mitigar extensões de browser
  * - Antialiasing habilitado para tipografia premium
  * - Smooth scroll nativo
  */
@@ -69,9 +70,13 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${playfairDisplay.variable} ${plusJakartaSans.variable} h-full antialiased`}
+      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-body">
+      <body
+        className="min-h-full flex flex-col bg-background text-foreground font-body"
+        suppressHydrationWarning
+      >
         <main className="flex-1">{children}</main>
       </body>
     </html>

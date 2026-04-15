@@ -4,10 +4,13 @@
  * Variáveis CSS complementares para valores que não são cobertos
  * pelo Tailwind ou que precisam de acesso direto em animações GSAP.
  * Estes tokens alimentam gradientes, sombras e efeitos especiais.
+ *
+ * Atualizado para High-Ticket 2026: inclui paleta light, novo
+ * sistema tipográfico e tokens de card/glassmorphism.
  */
 
 :root {
-  /* ─── Cores Base ─── */
+  /* ─── Cores Base (Dark) ─── */
   --spazio-bg: #050505;
   --spazio-surface: #0e0e0e;
   --spazio-gold: #f1c97d;
@@ -16,9 +19,17 @@
   --spazio-white: #fafafa;
   --spazio-muted: #888888;
 
+  /* ─── Cores Light (Body Sections) ─── */
+  --spazio-ice: #fafafa;
+  --spazio-ice-surface: #f0f0f0;
+  --spazio-ink: #1a1a1a;
+  --spazio-ink-muted: #555555;
+
   /* ─── Glassmorphism ─── */
   --glass-bg: rgba(14, 14, 14, 0.6);
+  --glass-bg-light: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(241, 201, 125, 0.15);
+  --glass-border-light: rgba(255, 255, 255, 0.1);
   --glass-blur: 40px;
 
   /* ─── Gradientes ─── */
@@ -33,15 +44,28 @@
     #050505 0%,
     #0e0e0e 100%
   );
+  --gradient-dark-to-ice: linear-gradient(
+    180deg,
+    #0a0a0a 0%,
+    #fafafa 100%
+  );
 
   /* ─── Sombras ─── */
   --shadow-gold: 0 0 40px rgba(241, 201, 125, 0.08);
   --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.1);
 
   /* ─── Tipografia Scale ─── */
   --text-hero: clamp(2.5rem, 6vw, 5.5rem);
+  --text-section-title: clamp(2rem, 4vw, 3.5rem);
   --text-subhero: clamp(1rem, 2vw, 1.25rem);
   --text-body: clamp(0.875rem, 1.5vw, 1rem);
+  --text-card-title: clamp(1.25rem, 2.5vw, 1.75rem);
+
+  /* ─── Border Radius ─── */
+  --radius-card: 2.5rem;
+  --radius-pill: 9999px;
 
   /* ─── Espaçamento ─── */
   --space-section: clamp(4rem, 10vw, 8rem);

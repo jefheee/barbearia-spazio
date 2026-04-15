@@ -97,7 +97,7 @@ export function HeroSection() {
             href="https://wa.me/5548999999999"
             strength={0.35}
           >
-            Agendar Experiência
+            Iniciar Consultoria de Imagem
           </MagneticButton>
         </div>
       </div>

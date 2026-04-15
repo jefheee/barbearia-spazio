@@ -9,10 +9,11 @@
  * @tailwindcss/postcss plugin — tudo deve estar aqui.
  *
  * Convenção de nomes:
- * --color-*     → gera classes text-*, bg-*, border-*
- * --font-*      → gera classes font-*
- * --animate-*   → gera classes animate-*
- * --backdrop-blur-* → gera classes backdrop-blur-*
+ * --color-*         → gera classes text-*, bg-*, border-*
+ * --font-*          → gera classes font-*
+ * --animate-*       → gera classes animate-*
+ * --backdrop-blur-*  → gera classes backdrop-blur-*
+ * --radius-*        → gera classes rounded-*
  */
 @theme inline {
   /* ─── Paleta Spazio ─── */
@@ -24,13 +25,22 @@
   --color-primary-gold-dark: #c9a35e;
   --color-muted: #888888;
 
+  /* ─── Paleta Light (seções de corpo) ─── */
+  --color-ice: #fafafa;
+  --color-ice-surface: #f0f0f0;
+  --color-ink: #1a1a1a;
+  --color-ink-muted: #555555;
+
   /* ─── Tipografia ─── */
-  --font-display: var(--font-playfair), Georgia, serif;
-  --font-body: var(--font-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 
   /* ─── Glassmorphism Blur ─── */
   --backdrop-blur-2xl: 40px;
   --backdrop-blur-3xl: 64px;
+
+  /* ─── Border Radius ─── */
+  --radius-card: 2.5rem;
 
   /* ─── Animações ─── */
   --animate-fade-up: fade-up 0.8s ease-out forwards;
