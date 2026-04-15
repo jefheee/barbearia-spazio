@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "../styles/design-tokens.css";
+
+/**
+ * Tailwind v4 — @theme inline
+ *
+ * Em Tailwind v4, a configuração é feita diretamente no CSS via @theme.
+ * O ficheiro tailwind.config.ts NÃO é lido automaticamente pelo
+ * @tailwindcss/postcss plugin — tudo deve estar aqui.
+ *
+ * Convenção de nomes:
+ * --color-*     → gera classes text-*, bg-*, border-*
+ * --font-*      → gera classes font-*
+ * --animate-*   → gera classes animate-*
+ * --backdrop-blur-* → gera classes backdrop-blur-*
+ */
+@theme inline {
+  /* ─── Paleta Spazio ─── */
+  --color-background: #050505;
+  --color-surface: #0e0e0e;
+  --color-foreground: #fafafa;
+  --color-primary-gold: #f1c97d;
+  --color-primary-gold-light: #f5daa3;
+  --color-primary-gold-dark: #c9a35e;
+  --color-muted: #888888;
+
+  /* ─── Tipografia ─── */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-jakarta), system-ui, sans-serif;
+
+  /* ─── Glassmorphism Blur ─── */
+  --backdrop-blur-2xl: 40px;
+  --backdrop-blur-3xl: 64px;
+
+  /* ─── Animações ─── */
+  --animate-fade-up: fade-up 0.8s ease-out forwards;
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Reset & Base ─── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar Premium ─── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(241, 201, 125, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(241, 201, 125, 0.4);
+}
+
+/* ─── Selection ─── */
+
+::selection {
+  background: rgba(241, 201, 125, 0.25);
+  color: #fafafa;
+}
+
+/* ─── Focus Visible ─── */
+
+:focus-visible {
+  outline: 2px solid rgba(241, 201, 125, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Page Transition Base ─── */
+
+main {
+  animation: page-enter 0.6s var(--ease-premium, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

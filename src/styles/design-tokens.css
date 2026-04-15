@@ -1,0 +1,53 @@
+/**
+ * Design Tokens — Barbearia Spazio
+ *
+ * Variáveis CSS complementares para valores que não são cobertos
+ * pelo Tailwind ou que precisam de acesso direto em animações GSAP.
+ * Estes tokens alimentam gradientes, sombras e efeitos especiais.
+ */
+
+:root {
+  /* ─── Cores Base ─── */
+  --spazio-bg: #050505;
+  --spazio-surface: #0e0e0e;
+  --spazio-gold: #f1c97d;
+  --spazio-gold-light: #f5daa3;
+  --spazio-gold-dark: #c9a35e;
+  --spazio-white: #fafafa;
+  --spazio-muted: #888888;
+
+  /* ─── Glassmorphism ─── */
+  --glass-bg: rgba(14, 14, 14, 0.6);
+  --glass-border: rgba(241, 201, 125, 0.15);
+  --glass-blur: 40px;
+
+  /* ─── Gradientes ─── */
+  --gradient-gold: linear-gradient(
+    135deg,
+    #f1c97d 0%,
+    #f5daa3 50%,
+    #c9a35e 100%
+  );
+  --gradient-dark: linear-gradient(
+    180deg,
+    #050505 0%,
+    #0e0e0e 100%
+  );
+
+  /* ─── Sombras ─── */
+  --shadow-gold: 0 0 40px rgba(241, 201, 125, 0.08);
+  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* ─── Tipografia Scale ─── */
+  --text-hero: clamp(2.5rem, 6vw, 5.5rem);
+  --text-subhero: clamp(1rem, 2vw, 1.25rem);
+  --text-body: clamp(0.875rem, 1.5vw, 1rem);
+
+  /* ─── Espaçamento ─── */
+  --space-section: clamp(4rem, 10vw, 8rem);
+
+  /* ─── Transições ─── */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-base: 0.4s;
+  --duration-slow: 0.8s;
+}
