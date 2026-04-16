@@ -87,7 +87,7 @@ export function ServicesGrid() {
               Curated Services
             </span>
             <h2
-              className="font-display font-extrabold tracking-tighter leading-snug"
+              className="font-display font-extrabold tracking-tighter leading-snug text-center w-full"
               style={{
                 fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                 color: "rgb(24,24,27)",
@@ -133,7 +133,7 @@ export function ServicesGrid() {
                 Serviço Principal
               </span>
               <h3
-                className="font-display font-bold tracking-tighter mb-3 leading-snug"
+                className="font-display font-bold tracking-tighter mb-3 leading-snug text-center"
                 style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fafafa" }}
               >
                 Consultoria Visagista com Jonathan
@@ -187,7 +187,7 @@ export function ServicesGrid() {
                 aria-hidden="true"
               />
               <h3
-                className="font-display font-bold tracking-tighter mb-4 leading-snug"
+                className="font-display font-bold tracking-tighter mb-4 leading-snug text-center"
                 style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#fafafa" }}
               >
                 Visagismo Óptico
@@ -229,7 +229,7 @@ export function ServicesGrid() {
           >
             <div className="relative z-10 flex flex-col items-center">
               <h3
-                className="font-display font-bold tracking-tighter mb-4 leading-snug"
+                className="font-display font-bold tracking-tighter mb-4 leading-snug text-center"
                 style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
               >
                 Ritual Spazio de Barba

@@ -93,7 +93,7 @@ export function SpazioExperience() {
       >
         <div className="max-w-lg mx-auto flex flex-col items-center">
           <span
-            className="font-display font-bold uppercase mb-4 block"
+            className="font-display font-bold uppercase mb-4 block text-center"
             style={{
               fontSize: "12px",
               letterSpacing: "0.2em",
@@ -103,7 +103,7 @@ export function SpazioExperience() {
             Baseline
           </span>
           <h2
-            className="font-display font-extrabold tracking-tighter mb-12 leading-snug"
+            className="font-display font-extrabold tracking-tighter mb-12 leading-snug text-center"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "rgb(24,24,27)",
@@ -116,12 +116,12 @@ export function SpazioExperience() {
               <li key={i} className="flex flex-col items-center">
                 <span
                   className="font-bold uppercase tracking-tight italic text-center"
-                  style={{ fontSize: "1.1rem", color: "rgb(24,24,27)" }}
+                  style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
                 >
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-sm max-w-sm mt-2 text-center"
+                  className="font-body text-base md:text-lg max-w-md mt-4 text-center leading-relaxed"
                   style={{ color: "rgb(82,82,91)" }}
                 >
                   {item.desc}
@@ -144,7 +144,7 @@ export function SpazioExperience() {
       >
         <div className="max-w-lg mx-auto flex flex-col items-center">
           <span
-            className="font-display font-bold uppercase mb-4 block"
+            className="font-display font-bold uppercase mb-4 block text-center"
             style={{
               fontSize: "12px",
               letterSpacing: "0.2em",
@@ -154,7 +154,7 @@ export function SpazioExperience() {
             Elite Tier
           </span>
           <h2
-            className="font-display font-extrabold tracking-tighter mb-12 leading-snug"
+            className="font-display font-extrabold tracking-tighter mb-12 leading-snug text-center"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "#fafafa",
@@ -167,12 +167,12 @@ export function SpazioExperience() {
               <li key={i} className="flex flex-col items-center">
                 <span
                   className="font-bold uppercase tracking-tight text-center"
-                  style={{ fontSize: "1.1rem", color: "#f1c97d" }}
+                  style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#f1c97d" }}
                 >
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-sm max-w-sm mt-2 text-center"
+                  className="font-body text-base md:text-lg max-w-md mt-4 text-center leading-relaxed"
                   style={{ color: "rgb(161,161,170)" }}
                 >
                   {item.desc}
@@ -180,23 +180,6 @@ export function SpazioExperience() {
               </li>
             ))}
           </ul>
-
-          {/* Local trust anchor */}
-          <div
-            className="mt-12 pt-8 w-full"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-          >
-            <p
-              className="font-body uppercase text-center"
-              style={{
-                fontSize: "10px",
-                letterSpacing: "0.15em",
-                color: "rgb(113,113,122)",
-              }}
-            >
-              Av. Pedra Branca, 303, Sala 03 — Palhoça, SC
-            </p>
-          </div>
         </div>
       </div>
     </section>

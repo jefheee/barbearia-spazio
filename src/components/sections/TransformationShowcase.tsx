@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -49,8 +50,8 @@ export function TransformationShowcase() {
       // Wipe: reveal "Depois" image from left to right via clip-path
       tl.fromTo(
         afterImage,
-        { clipPath: "inset(0 100% 0 0)" },
-        { clipPath: "inset(0 0% 0 0)", duration: 1, ease: "none" }
+        { clipPath: "inset(0% 100% 0% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "none" }
       );
 
       // Animate the divider label position
@@ -74,10 +75,10 @@ export function TransformationShowcase() {
       <div className="showcase-pin-target relative w-full h-screen overflow-hidden">
         {/* "Antes" Layer — bottom (z-10) */}
         <div
-          className="absolute inset-0 h-full w-full z-10 flex items-center justify-center"
+          className="absolute inset-0 h-full w-full z-10 flex items-center justify-center bg-[#1c1b1b]"
           aria-label="Antes da consultoria"
         >
-          <img src="/antes.png" alt="Antes" className="object-cover object-center w-full h-full absolute inset-0" />
+          <Image src="/antes.png" alt="Antes" fill className="object-cover object-center pointer-events-none" />
           <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           <div className="text-center relative z-10 px-6">
             <span
@@ -105,13 +106,13 @@ export function TransformationShowcase() {
         {/* "Depois" Layer — top (z-20, com animated clip-path) */}
         <div
           ref={afterImageRef}
-          className="absolute inset-0 h-full w-full z-20 flex items-center justify-center"
+          className="absolute inset-0 h-full w-full z-20 flex items-center justify-center bg-[#0a0a0a]"
           style={{
-            clipPath: "inset(0 100% 0 0)",
+            clipPath: "inset(0% 100% 0% 0%)",
           }}
           aria-label="Depois da consultoria Spazio"
         >
-          <img src="/depois.png" alt="Depois" className="object-cover object-center w-full h-full absolute inset-0" />
+          <Image src="/depois.png" alt="Depois" fill className="object-cover object-center pointer-events-none" />
           <div className="absolute inset-0 bg-black/40 pointer-events-none" />
           <div
             className="absolute top-0 left-0 right-0 z-10 pointer-events-none"

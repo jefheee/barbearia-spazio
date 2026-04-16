@@ -57,36 +57,36 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
+      {/* Header Topo Absoluto - Agora externo para ficar no topo real da tela */}
+      <header className="absolute top-8 left-1/2 -translate-x-1/2 text-center w-full z-[100]">
+        <div data-animate="decor-line" className="mb-2">
+          <span
+            className="tracking-[0.35em] uppercase"
+            style={{
+              fontFamily: "var(--font-playfair), serif",
+              fontSize: "clamp(1rem, 2vw, 1.4rem)",
+              fontWeight: 500,
+              color: "#f1c97d",
+            }}
+          >
+            SPAZIO
+          </span>
+        </div>
+        <span
+          className="inline-block font-display font-bold uppercase"
+          style={{
+            fontSize: "11px",
+            letterSpacing: "0.3em",
+            color: "rgba(250,250,250,0.4)",
+          }}
+        >
+          The Architectural Groomer
+        </span>
+      </header>
+
       {/* Content — centralizado com max-w-5xl e respiro generoso */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-5xl mx-auto px-6 lg:px-12 mt-20">
         
-        {/* Header Topo Absoluto */}
-        <header className="absolute top-8 left-1/2 -translate-x-1/2 text-center w-full z-20">
-          <div data-animate="decor-line" className="mb-2">
-            <span
-              className="tracking-[0.35em] uppercase"
-              style={{
-                fontFamily: "var(--font-playfair), serif",
-                fontSize: "clamp(1rem, 2vw, 1.4rem)",
-                fontWeight: 500,
-                color: "#f1c97d",
-              }}
-            >
-              SPAZIO
-            </span>
-          </div>
-          <span
-            className="inline-block font-display font-bold uppercase"
-            style={{
-              fontSize: "11px",
-              letterSpacing: "0.3em",
-              color: "rgba(250,250,250,0.4)",
-            }}
-          >
-            The Architectural Groomer
-          </span>
-        </header>
-
         {/* Headline — leading-none para respiro e tracking-tight */}
         <h1
           className="font-display font-extrabold tracking-tight leading-none mb-0"
