@@ -43,53 +43,53 @@ export function HeroSection() {
     >
       {/* Background Image */}
       <Image
-        src="/hero-bg.jpg"
+        src="/homesrc.jpeg"
         alt="Interior da Barbearia Spazio — cadeiras premium e ambiente climatizado"
         fill
         className="object-cover"
-        priority
-        quality={90}
+        priority={true}
+        quality={100}
       />
 
       {/* Dark overlay */}
       <div
-        className="absolute inset-0 z-[1]"
-        style={{ backgroundColor: "rgba(10, 10, 10, 0.82)" }}
+        className="absolute inset-0 z-[1] bg-black/70"
         aria-hidden="true"
       />
 
       {/* Content — centralizado com max-w-5xl e respiro generoso */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-5xl mx-auto px-6 lg:px-12">
-        {/* Logo SPAZIO */}
-        <div data-animate="decor-line" className="mb-8">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-5xl mx-auto px-6 lg:px-12 mt-20">
+        
+        {/* Header Topo Absoluto */}
+        <header className="absolute top-8 left-1/2 -translate-x-1/2 text-center w-full z-20">
+          <div data-animate="decor-line" className="mb-2">
+            <span
+              className="tracking-[0.35em] uppercase"
+              style={{
+                fontFamily: "var(--font-playfair), serif",
+                fontSize: "clamp(1rem, 2vw, 1.4rem)",
+                fontWeight: 500,
+                color: "#f1c97d",
+              }}
+            >
+              SPAZIO
+            </span>
+          </div>
           <span
-            className="tracking-[0.35em] uppercase"
+            className="inline-block font-display font-bold uppercase"
             style={{
-              fontFamily: "var(--font-playfair), serif",
-              fontSize: "clamp(1rem, 2vw, 1.4rem)",
-              fontWeight: 500,
-              color: "#f1c97d",
+              fontSize: "11px",
+              letterSpacing: "0.3em",
+              color: "rgba(250,250,250,0.4)",
             }}
           >
-            SPAZIO
+            The Architectural Groomer
           </span>
-        </div>
+        </header>
 
-        {/* Kicker */}
-        <span
-          className="inline-block font-display font-bold uppercase mb-10"
-          style={{
-            fontSize: "11px",
-            letterSpacing: "0.3em",
-            color: "rgba(250,250,250,0.4)",
-          }}
-        >
-          The Architectural Groomer
-        </span>
-
-        {/* Headline — leading-snug para não cortar descendentes */}
+        {/* Headline — leading-none para respiro e tracking-tight */}
         <h1
-          className="font-display font-extrabold tracking-tighter leading-snug mb-14"
+          className="font-display font-extrabold tracking-tight leading-none mb-0"
           style={{
             fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
             color: "#fafafa",
@@ -98,10 +98,10 @@ export function HeroSection() {
           {renderHeadline()}
         </h1>
 
-        {/* Subheadline — max-w-2xl para conforto de leitura */}
+        {/* Subheadline — max-w-2xl para conforto de leitura, mt-6 e leading-relaxed */}
         <p
           data-animate="subheadline"
-          className="font-body leading-relaxed max-w-2xl mx-auto mb-16"
+          className="font-body leading-relaxed max-w-2xl mx-auto mt-6"
           style={{
             fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
             color: "rgba(250,250,250,0.55)",
@@ -111,8 +111,8 @@ export function HeroSection() {
           autoridade através da estética.
         </p>
 
-        {/* CTA — espaçamento generoso */}
-        <div data-animate="cta" className="flex flex-col items-center gap-6">
+        {/* CTA — mt-16 para descer */}
+        <div data-animate="cta" className="flex flex-col items-center gap-6 mt-16">
           <a
             href="https://wa.me/5548999999999"
             target="_blank"

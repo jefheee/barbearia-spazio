@@ -69,15 +69,15 @@ export function ServicesGrid() {
       }}
       aria-label="Engenharia Estética Aplicada — Serviços"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
         {/* Section Header */}
         <div
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8"
+          className="flex flex-col items-center justify-center mb-24 gap-4 w-full"
           data-animate="grid-el"
         >
-          <div className="max-w-2xl">
+          <div className="max-w-2xl mx-auto text-center">
             <span
-              className="font-display font-bold uppercase block mb-6"
+              className="font-display font-bold uppercase block mb-6 text-center"
               style={{
                 fontSize: "12px",
                 letterSpacing: "0.3em",
@@ -97,7 +97,7 @@ export function ServicesGrid() {
             </h2>
           </div>
           <div
-            className="font-body font-medium text-right uppercase"
+            className="font-body font-medium text-center uppercase"
             style={{
               fontSize: "10px",
               letterSpacing: "0.2em",
@@ -113,7 +113,7 @@ export function ServicesGrid() {
           {/* Main Feature Card */}
           <div
             data-animate="grid-el"
-            className="md:col-span-7 relative overflow-hidden group flex flex-col justify-end"
+            className="md:col-span-7 relative overflow-hidden group flex flex-col justify-center items-center text-center"
             style={{
               backgroundColor: "#1c1b1b",
               borderRadius: "2rem",
@@ -121,7 +121,7 @@ export function ServicesGrid() {
               padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            <div>
+            <div className="flex flex-col items-center">
               <span
                 className="inline-block font-body uppercase mb-6"
                 style={{
@@ -139,14 +139,20 @@ export function ServicesGrid() {
                 Consultoria Visagista com Jonathan
               </h3>
               <p
-                className="font-body text-sm leading-relaxed max-w-md mb-6"
+                className="font-body text-sm leading-relaxed max-w-2xl mx-auto mb-6"
                 style={{ color: "rgb(161,161,170)" }}
               >
                 Diagnóstico facial completo com foco em cabelo, barba e
                 bem-estar. Cada sessão é desenhada para reposicionar a sua
                 imagem e projetar autoridade no seu ambiente profissional.
               </p>
-              <div className="flex items-end justify-between">
+              <div className="flex flex-col items-center justify-center gap-4 mt-4">
+                <span
+                  className="font-display font-black italic"
+                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#f1c97d" }}
+                >
+                  R$ 800
+                </span>
                 <a
                   href="https://wa.me/5548999999999"
                   target="_blank"
@@ -160,12 +166,6 @@ export function ServicesGrid() {
                 >
                   Agendar Sessão
                 </a>
-                <span
-                  className="font-display font-black italic"
-                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#f1c97d" }}
-                >
-                  R$ 800
-                </span>
               </div>
             </div>
           </div>
@@ -173,16 +173,16 @@ export function ServicesGrid() {
           {/* Side Card — Visagismo Óptico */}
           <div
             data-animate="grid-el"
-            className="md:col-span-5 flex flex-col justify-between"
+            className="md:col-span-5 flex flex-col justify-between items-center text-center"
             style={{
               backgroundColor: "#201f1f",
               borderRadius: "2rem",
               padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            <div>
+            <div className="flex flex-col items-center">
               <div
-                className="mb-12"
+                className="mb-8"
                 style={{ width: "48px", height: "1px", backgroundColor: "#f1c97d" }}
                 aria-hidden="true"
               />
@@ -193,14 +193,14 @@ export function ServicesGrid() {
                 Visagismo Óptico
               </h3>
               <p
-                className="font-body text-sm leading-relaxed max-w-sm"
+                className="font-body text-sm leading-relaxed max-w-2xl mx-auto"
                 style={{ color: "rgb(161,161,170)" }}
               >
                 Consultoria para escolha de armações e acessórios que complementam
                 seu formato de rosto e traços naturais.
               </p>
             </div>
-            <div className="mt-auto pt-12">
+            <div className="mt-8 pt-8 flex flex-col items-center">
               <div
                 className="font-body uppercase mb-2"
                 style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgb(113,113,122)" }}
@@ -219,7 +219,7 @@ export function ServicesGrid() {
           {/* Side Card — Ritual de Barba */}
           <div
             data-animate="grid-el"
-            className="md:col-span-5 relative overflow-hidden flex flex-col justify-between"
+            className="md:col-span-5 relative overflow-hidden flex flex-col justify-center items-center text-center"
             style={{
               backgroundColor: "#ffffff",
               border: "1px solid rgb(228,228,231)",
@@ -227,7 +227,7 @@ export function ServicesGrid() {
               padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            <div className="relative z-10">
+            <div className="relative z-10 flex flex-col items-center">
               <h3
                 className="font-display font-bold tracking-tighter mb-4 leading-snug"
                 style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
@@ -235,14 +235,14 @@ export function ServicesGrid() {
                 Ritual Spazio de Barba
               </h3>
               <p
-                className="font-body text-sm leading-relaxed max-w-sm"
+                className="font-body text-sm leading-relaxed max-w-2xl mx-auto"
                 style={{ color: "rgb(82,82,91)" }}
               >
                 Relaxamento e precisão. Toalhas quentes, óleos essenciais e o
                 acabamento impecável da arquitetura facial.
               </p>
             </div>
-            <div className="relative z-10 mt-12">
+            <div className="relative z-10 mt-8">
               <span
                 className="font-black italic"
                 style={{ fontSize: "1.75rem", color: "rgb(24,24,27)" }}

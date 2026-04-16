@@ -84,14 +84,14 @@ export function SpazioExperience() {
       {/* Left Panel — "O Padrão" (Ice) */}
       <div
         data-animate="exp-panel"
-        className="w-full md:w-1/2 flex flex-col justify-center px-6 lg:px-12"
+        className="w-full md:w-1/2 flex flex-col justify-center items-center text-center px-6 lg:px-12"
         style={{
           backgroundColor: "#fafafa",
           paddingTop: "clamp(3rem, 6vw, 6rem)",
           paddingBottom: "clamp(3rem, 6vw, 6rem)",
         }}
       >
-        <div className="max-w-lg mx-auto md:mx-0 md:ml-auto md:mr-16">
+        <div className="max-w-lg mx-auto flex flex-col items-center">
           <span
             className="font-display font-bold uppercase mb-4 block"
             style={{
@@ -111,17 +111,17 @@ export function SpazioExperience() {
           >
             O Padrão
           </h2>
-          <ul className="space-y-8">
+          <ul className="space-y-8 flex flex-col items-center">
             {STANDARD_ITEMS.map((item, i) => (
-              <li key={i} className="flex flex-col">
+              <li key={i} className="flex flex-col items-center">
                 <span
-                  className="font-bold uppercase tracking-tight italic"
+                  className="font-bold uppercase tracking-tight italic text-center"
                   style={{ fontSize: "1.1rem", color: "rgb(24,24,27)" }}
                 >
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-sm max-w-sm mt-2"
+                  className="font-body text-sm max-w-sm mt-2 text-center"
                   style={{ color: "rgb(82,82,91)" }}
                 >
                   {item.desc}
@@ -135,14 +135,14 @@ export function SpazioExperience() {
       {/* Right Panel — "A Consultoria Spazio" (Dark) */}
       <div
         data-animate="exp-panel"
-        className="w-full md:w-1/2 flex flex-col justify-center px-6 lg:px-12"
+        className="w-full md:w-1/2 flex flex-col justify-center items-center text-center px-6 lg:px-12"
         style={{
           backgroundColor: "#0a0a0a",
           paddingTop: "clamp(3rem, 6vw, 6rem)",
           paddingBottom: "clamp(3rem, 6vw, 6rem)",
         }}
       >
-        <div className="max-w-lg mx-auto md:mx-0 md:mr-auto md:ml-16">
+        <div className="max-w-lg mx-auto flex flex-col items-center">
           <span
             className="font-display font-bold uppercase mb-4 block"
             style={{
@@ -162,17 +162,17 @@ export function SpazioExperience() {
           >
             A Consultoria Spazio
           </h2>
-          <ul className="space-y-8">
+          <ul className="space-y-8 flex flex-col items-center">
             {SPAZIO_ITEMS.map((item, i) => (
-              <li key={i} className="flex flex-col">
+              <li key={i} className="flex flex-col items-center">
                 <span
-                  className="font-bold uppercase tracking-tight"
+                  className="font-bold uppercase tracking-tight text-center"
                   style={{ fontSize: "1.1rem", color: "#f1c97d" }}
                 >
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-sm max-w-sm mt-2"
+                  className="font-body text-sm max-w-sm mt-2 text-center"
                   style={{ color: "rgb(161,161,170)" }}
                 >
                   {item.desc}
@@ -183,11 +183,11 @@ export function SpazioExperience() {
 
           {/* Local trust anchor */}
           <div
-            className="mt-12 pt-8"
+            className="mt-12 pt-8 w-full"
             style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
           >
             <p
-              className="font-body uppercase"
+              className="font-body uppercase text-center"
               style={{
                 fontSize: "10px",
                 letterSpacing: "0.15em",

@@ -72,35 +72,20 @@ export function TransformationShowcase() {
     >
       {/* Pinned viewport */}
       <div className="showcase-pin-target relative w-full h-screen overflow-hidden">
-        {/* "Antes" Layer — muted, low-energy (bottom) */}
+        {/* "Antes" Layer — bottom (z-10) */}
         <div
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ backgroundColor: "#1c1b1b" }}
+          className="absolute inset-0 h-full w-full z-10 flex items-center justify-center"
           aria-label="Antes da consultoria"
         >
-          {/* Placeholder pattern: subtle grid lines */}
-          <div className="absolute inset-0 opacity-10" aria-hidden="true">
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute"
-                style={{
-                  left: `${(i + 1) * 12.5}%`,
-                  top: 0,
-                  bottom: 0,
-                  width: "1px",
-                  backgroundColor: "rgba(255,255,255,0.15)",
-                }}
-              />
-            ))}
-          </div>
+          <img src="/antes.png" alt="Antes" className="object-cover object-center w-full h-full absolute inset-0" />
+          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           <div className="text-center relative z-10 px-6">
             <span
               className="font-display font-bold uppercase block mb-4"
               style={{
                 fontSize: "12px",
                 letterSpacing: "0.3em",
-                color: "rgb(113,113,122)",
+                color: "rgb(212,212,216)",
               }}
             >
               Antes
@@ -109,7 +94,7 @@ export function TransformationShowcase() {
               className="font-display font-extrabold tracking-tighter leading-snug"
               style={{
                 fontSize: "clamp(2rem, 5vw, 4rem)",
-                color: "rgb(63,63,70)",
+                color: "#fafafa",
               }}
             >
               A versão que o espelho<br />não questiona.
@@ -117,19 +102,19 @@ export function TransformationShowcase() {
           </div>
         </div>
 
-        {/* "Depois" Layer — vibrant, gold accents (top, clip-path animated) */}
+        {/* "Depois" Layer — top (z-20, com animated clip-path) */}
         <div
           ref={afterImageRef}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 h-full w-full z-20 flex items-center justify-center"
           style={{
-            backgroundColor: "#0a0a0a",
             clipPath: "inset(0 100% 0 0)",
           }}
           aria-label="Depois da consultoria Spazio"
         >
-          {/* Subtle gold accent line */}
+          <img src="/depois.png" alt="Depois" className="object-cover object-center w-full h-full absolute inset-0" />
+          <div className="absolute inset-0 bg-black/40 pointer-events-none" />
           <div
-            className="absolute top-0 left-0 right-0"
+            className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
             style={{
               height: "2px",
               background: "linear-gradient(to right, transparent, #f1c97d, transparent)",
@@ -160,7 +145,7 @@ export function TransformationShowcase() {
               className="font-body max-w-md mx-auto mt-8"
               style={{
                 fontSize: "clamp(0.9rem, 1.2vw, 1rem)",
-                color: "rgb(161,161,170)",
+                color: "rgb(212,212,216)",
               }}
             >
               Visagismo Arquitetônico aplicado. Cada detalhe projetado
@@ -172,7 +157,7 @@ export function TransformationShowcase() {
         {/* Moving Divider Line — follows the wipe edge */}
         <div
           ref={labelRef}
-          className="absolute top-0 bottom-0 z-20 pointer-events-none"
+          className="absolute top-0 bottom-0 z-30 pointer-events-none"
           style={{ left: "0%", width: "2px" }}
         >
           <div

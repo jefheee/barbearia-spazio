@@ -69,7 +69,7 @@ export function VisagismScience() {
       }}
       aria-label="A Ciência do Visagismo"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center" data-animate="science-el">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center" data-animate="science-el">
         <h2
           className="font-display font-bold tracking-tighter mb-8"
           style={{
@@ -96,11 +96,11 @@ export function VisagismScience() {
 
         {/* Process Grid — 3 columns */}
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16 w-full"
           style={{ borderTop: "1px solid rgb(39,39,42)" }}
         >
           {PROCESS_STEPS.map((step, idx) => (
-            <div key={idx} className="text-left" data-animate="science-el">
+            <div key={idx} className="text-center flex flex-col items-center" data-animate="science-el">
               <div
                 className="font-display font-bold mb-4"
                 style={{ fontSize: "1.25rem", color: "#f1c97d" }}
@@ -108,7 +108,7 @@ export function VisagismScience() {
                 {step.title}
               </div>
               <p
-                className="font-body text-sm leading-relaxed max-w-xs"
+                className="font-body text-sm leading-relaxed max-w-2xl mx-auto text-center"
                 style={{ color: "rgb(113,113,122)" }}
               >
                 {step.desc}
