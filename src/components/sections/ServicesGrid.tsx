@@ -108,16 +108,16 @@ export function ServicesGrid() {
           </div>
         </div>
 
-        {/* Bento Grid — 12 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {/* Serviços em Pilha (Stack Central) */}
+        <div className="flex flex-col gap-8 w-full max-w-4xl mx-auto">
           {/* Main Feature Card */}
           <div
             data-animate="grid-el"
-            className="md:col-span-7 relative overflow-hidden group flex flex-col justify-center items-center text-center"
+            className="w-full relative overflow-hidden group flex flex-col justify-center items-center text-center"
             style={{
               backgroundColor: "#1c1b1b",
               borderRadius: "2rem",
-              minHeight: "520px",
+              minHeight: "400px",
               padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
@@ -139,7 +139,7 @@ export function ServicesGrid() {
                 Consultoria Visagista com Jonathan
               </h3>
               <p
-                className="font-body text-sm leading-relaxed max-w-2xl mx-auto mb-6"
+                className="font-body text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6"
                 style={{ color: "rgb(161,161,170)" }}
               >
                 Diagnóstico facial completo com foco em cabelo, barba e
@@ -173,7 +173,7 @@ export function ServicesGrid() {
           {/* Side Card — Visagismo Óptico */}
           <div
             data-animate="grid-el"
-            className="md:col-span-5 flex flex-col justify-between items-center text-center"
+            className="w-full flex flex-col justify-between items-center text-center"
             style={{
               backgroundColor: "#201f1f",
               borderRadius: "2rem",
@@ -193,7 +193,7 @@ export function ServicesGrid() {
                 Visagismo Óptico
               </h3>
               <p
-                className="font-body text-sm leading-relaxed max-w-2xl mx-auto"
+                className="font-body text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
                 style={{ color: "rgb(161,161,170)" }}
               >
                 Consultoria para escolha de armações e acessórios que complementam
@@ -219,7 +219,7 @@ export function ServicesGrid() {
           {/* Side Card — Ritual de Barba */}
           <div
             data-animate="grid-el"
-            className="md:col-span-5 relative overflow-hidden flex flex-col justify-center items-center text-center"
+            className="w-full relative overflow-hidden flex flex-col justify-center items-center text-center"
             style={{
               backgroundColor: "#ffffff",
               border: "1px solid rgb(228,228,231)",
@@ -235,7 +235,7 @@ export function ServicesGrid() {
                 Ritual Spazio de Barba
               </h3>
               <p
-                className="font-body text-sm leading-relaxed max-w-2xl mx-auto"
+                className="font-body text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
                 style={{ color: "rgb(82,82,91)" }}
               >
                 Relaxamento e precisão. Toalhas quentes, óleos essenciais e o
@@ -265,12 +265,12 @@ export function ServicesGrid() {
           {/* Social Proof Card */}
           <div
             data-animate="grid-el"
-            className="md:col-span-7 flex flex-col justify-center items-center text-center"
+            className="w-full flex flex-col justify-center items-center text-center"
             style={{
               backgroundColor: "#201f1f",
               borderRadius: "2rem",
               padding: "clamp(2rem, 4vw, 3rem)",
-              minHeight: "280px",
+              minHeight: "240px",
             }}
           >
             <div className="flex gap-1 mb-4" aria-label="4.9 de 5 estrelas">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -8,217 +8,137 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * TransformationShowcase — Before/After Scroll-Driven Wipe Effect
- *
- * Awwwards-level interaction:
- * - h-[200vh] outer container for scroll distance
- * - h-screen pinned inner with two stacked images (absolute inset-0)
- * - Bottom layer: "Antes" (desaturated, low-energy placeholder)
- * - Top layer: "Depois" (vibrant, high-energy placeholder)
- * - GSAP ScrollTrigger with scrub:true, pin:true animates
- *   clip-path from inset(0 100% 0 0) → inset(0 0% 0 0) (L→R wipe)
- * - Centered divider line + "Antes / Depois" labels
- *
- * Uses generic color placeholders. Swap for real images later.
- */
-
 export function TransformationShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const afterImageRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLDivElement>(null);
+  const scrollPinRef = useRef<HTMLDivElement>(null);
+  
+  const [progress, setProgress] = useState(0); 
+  const [isDragging, setIsDragging] = useState(false);
+
+  const isDraggingRef = useRef(isDragging);
+  useEffect(() => {
+    isDraggingRef.current = isDragging;
+  }, [isDragging]);
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      const afterImage = afterImageRef.current;
-      const label = labelRef.current;
-      if (!section || !afterImage || !label) return;
+      const pinTarget = scrollPinRef.current;
+      if (!pinTarget) return;
 
-      // Pin the showcase area and animate clip-path on scroll
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-          pin: ".showcase-pin-target",
-          pinSpacing: false,
+      ScrollTrigger.create({
+        trigger: pinTarget,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1, 
+        pin: true,
+        // Sync scroll if user is not manually dragging
+        onUpdate: (self) => {
+          if (!isDraggingRef.current) {
+            setProgress(self.progress * 100);
+          }
         },
       });
-
-      // Wipe: reveal "Depois" image from left to right via clip-path
-      tl.fromTo(
-        afterImage,
-        { clipPath: "inset(0% 100% 0% 0%)" },
-        { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "none" }
-      );
-
-      // Animate the divider label position
-      tl.fromTo(
-        label,
-        { left: "0%" },
-        { left: "100%", duration: 1, ease: "none" },
-        0
-      );
     },
     { scope: sectionRef }
   );
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative"
-      style={{ height: "200vh" }}
-    >
-      {/* Pinned viewport */}
-      <div className="showcase-pin-target relative w-full h-screen overflow-hidden">
-        {/* "Antes" Layer — bottom (z-10) */}
-        <div
-          className="absolute inset-0 h-full w-full z-10 flex items-center justify-center bg-[#1c1b1b]"
-          aria-label="Antes da consultoria"
-        >
-          <Image src="/antes.png" alt="Antes" fill className="object-cover object-center pointer-events-none" />
-          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
-          <div className="text-center relative z-10 px-6">
-            <span
-              className="font-display font-bold uppercase block mb-4"
-              style={{
-                fontSize: "12px",
-                letterSpacing: "0.3em",
-                color: "rgb(212,212,216)",
-              }}
-            >
-              Antes
-            </span>
-            <h2
-              className="font-display font-extrabold tracking-tighter leading-snug"
-              style={{
-                fontSize: "clamp(2rem, 5vw, 4rem)",
-                color: "#fafafa",
-              }}
-            >
-              A versão que o espelho<br />não questiona.
-            </h2>
-          </div>
-        </div>
-
-        {/* "Depois" Layer — top (z-20, com animated clip-path) */}
-        <div
-          ref={afterImageRef}
-          className="absolute inset-0 h-full w-full z-20 flex items-center justify-center bg-[#0a0a0a]"
-          style={{
-            clipPath: "inset(0% 100% 0% 0%)",
-          }}
-          aria-label="Depois da consultoria Spazio"
-        >
-          <Image src="/depois.png" alt="Depois" fill className="object-cover object-center pointer-events-none" />
-          <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-          <div
-            className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
-            style={{
-              height: "2px",
-              background: "linear-gradient(to right, transparent, #f1c97d, transparent)",
-            }}
-            aria-hidden="true"
-          />
-          <div className="text-center relative z-10 px-6">
-            <span
-              className="font-display font-bold uppercase block mb-4"
-              style={{
-                fontSize: "12px",
-                letterSpacing: "0.3em",
-                color: "#f1c97d",
-              }}
-            >
-              Depois
-            </span>
-            <h2
-              className="font-display font-extrabold tracking-tighter leading-snug"
-              style={{
-                fontSize: "clamp(2rem, 5vw, 4rem)",
-                color: "#fafafa",
-              }}
-            >
-              A versão que o mercado<br />não esquece.
-            </h2>
-            <p
-              className="font-body max-w-md mx-auto mt-8"
-              style={{
-                fontSize: "clamp(0.9rem, 1.2vw, 1rem)",
-                color: "rgb(212,212,216)",
-              }}
-            >
-              Visagismo Arquitetônico aplicado. Cada detalhe projetado
-              para comunicar competência, confiança e autoridade.
-            </p>
-          </div>
-        </div>
-
-        {/* Moving Divider Line — follows the wipe edge */}
-        <div
-          ref={labelRef}
-          className="absolute top-0 bottom-0 z-30 pointer-events-none"
-          style={{ left: "0%", width: "2px" }}
-        >
-          <div
-            className="h-full"
-            style={{
-              width: "2px",
-              background: "linear-gradient(to bottom, transparent 10%, #f1c97d 50%, transparent 90%)",
-            }}
-          />
-          {/* Label pill */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              backgroundColor: "#f1c97d",
-            }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#0a0a0a"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              aria-hidden="true"
-            >
-              <path d="M18 8L6 12L18 16" />
-              <path d="M6 8L18 12L6 16" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Fixed bottom labels */}
-        <div
-          className="absolute bottom-8 left-0 right-0 z-20 flex justify-between pointer-events-none"
-          style={{ padding: "0 clamp(1.5rem, 5vw, 4rem)" }}
-        >
+    <div ref={sectionRef} className="relative w-full bg-[#0a0a0a]" style={{ height: "200vh" }}>
+      <div ref={scrollPinRef} className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden px-6 lg:px-12">
+        
+        {/* Cabeçalho Textual Isolado (Acima das fotos) */}
+        <div className="w-full flex flex-col items-center justify-center text-center pb-8 z-10 pointer-events-none">
           <span
-            className="font-body uppercase"
+            className="font-display font-bold uppercase block mb-4"
             style={{
-              fontSize: "10px",
-              letterSpacing: "0.2em",
-              color: "rgb(113,113,122)",
+              fontSize: "12px",
+              letterSpacing: "0.3em",
+              color: progress < 50 ? "rgb(161,161,170)" : "#f1c97d",
+              transition: "color 0.4s ease",
             }}
           >
-            Scroll para revelar
+            {progress < 50 ? "Antes" : "Depois"}
           </span>
-          <span
-            className="font-body uppercase"
+          <h2
+            className="font-display font-extrabold tracking-tighter leading-snug"
             style={{
-              fontSize: "10px",
-              letterSpacing: "0.2em",
-              color: "rgb(113,113,122)",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              color: "#fafafa",
+              minHeight: "130px", // Maintains space so the layout doesn't jump
             }}
           >
-            Before / After
-          </span>
+            {progress < 50 ? (
+              <span className="block animate-fade-up">A versão que o espelho<br />não questiona.</span>
+            ) : (
+              <span className="block animate-fade-up text-[#f1c97d]">A versão que o mercado<br />não esquece.</span>
+            )}
+          </h2>
+        </div>
+
+        {/* Container do Slider */}
+        <div className="relative w-full max-w-6xl mx-auto h-[50vh] md:h-[65vh] rounded-3xl overflow-hidden cursor-ew-resize shadow-2xl">
+          
+          {/* Base Layer: Antes (Sempre visível no fundo) */}
+          <div className="absolute inset-0 h-full w-full z-10 bg-[#1c1b1b]">
+            <Image 
+              src="/antes.png" 
+              alt="Antes da transformação" 
+              fill 
+              priority 
+              quality={100}
+              className="object-cover object-center pointer-events-none" 
+            />
+            {/* O degradê preto/escurecimento sobre o "Antes" */}
+            <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+          </div>
+
+          {/* Top Layer: Depois (Cortado horizontalmente pelo clip-path) */}
+          <div
+            className="absolute inset-0 h-full w-full z-20 bg-[#0a0a0a]"
+            style={{ clipPath: `inset(0% ${100 - progress}% 0% 0%)` }}
+          >
+            <Image 
+              src="/depois.png" 
+              alt="Depois da transformação" 
+              fill 
+              priority 
+              quality={100}
+              className="object-cover object-center pointer-events-none" 
+            />
+            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+          </div>
+
+          {/* Divisor Visual (A linha que separa) */}
+          <div
+            className="absolute top-0 bottom-0 z-30 flex justify-center items-center pointer-events-none"
+            style={{ left: `${progress}%`, width: "2px", transform: "translateX(-50%)" }}
+          >
+            <div className="absolute inset-y-0 w-px bg-[#f1c97d] shadow-[0_0_10px_rgba(241,201,125,0.7)]" />
+            
+            {/* Botão de Arrastar */}
+            <div className="absolute w-12 h-12 bg-[#f1c97d] rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(241,201,125,0.5)]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18L9 12L15 6" />
+                <path d="M9 18L15 12L9 6" transform="translate(6, 0)" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Controlador HTML Range Nativo */}
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="0.1"
+            value={progress}
+            onChange={(e) => setProgress(Number(e.target.value))}
+            onMouseDown={() => setIsDragging(true)}
+            onMouseUp={() => setIsDragging(false)}
+            onTouchStart={() => setIsDragging(true)}
+            onTouchEnd={() => setIsDragging(false)}
+            className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-ew-resize m-0 p-0"
+            style={{ WebkitAppearance: 'none' }}
+          />
         </div>
       </div>
     </div>
