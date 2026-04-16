@@ -7,14 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * VisagismScience — The Science of Visagism
- *
- * Centered layout on dark bg (#0a0a0a).
- * Containers: max-w-7xl mx-auto px-6 lg:px-12.
- * Text blocks: max-w-2xl for reading comfort.
- */
-
 const PROCESS_STEPS = [
   {
     title: "1. Diagnóstico Facial",
@@ -61,7 +53,7 @@ export function VisagismScience() {
   return (
     <section
       ref={sectionRef}
-      className="w-full"
+      className="w-full flex justify-center overflow-hidden"
       style={{
         backgroundColor: "#0a0a0a",
         paddingTop: "clamp(5rem, 10vw, 8rem)",
@@ -69,30 +61,35 @@ export function VisagismScience() {
       }}
       aria-label="A Ciência do Visagismo"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center" data-animate="science-el">
-        <h2
-          className="font-display font-bold tracking-tighter mb-8"
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3.75rem)",
-            color: "#fafafa",
-          }}
-        >
-          Não é um corte.{" "}
-          <span style={{ color: "#f1c97d" }}>É engenharia de imagem.</span>
-        </h2>
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
+        
+        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-8">
+          <h2
+            className="font-display font-bold tracking-tighter w-full text-center"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.75rem)",
+              color: "#fafafa",
+            }}
+          >
+            Não é um corte.{" "}
+            <span style={{ color: "#f1c97d" }}>É engenharia de imagem.</span>
+          </h2>
+        </div>
 
-        <p
-          className="font-body leading-relaxed max-w-2xl mx-auto mb-20"
-          style={{
-            fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
-            color: "rgb(161,161,170)",
-            lineHeight: 1.8,
-          }}
-        >
-          O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos
-          as linhas de força do seu rosto, a sua estrutura óssea e o seu momento
-          profissional para desenhar a estética que projeta a sua melhor versão.
-        </p>
+        <div data-animate="science-el" className="w-full flex justify-center text-center mb-20">
+          <p
+            className="font-body leading-relaxed max-w-2xl text-center"
+            style={{
+              fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
+              color: "rgb(161,161,170)",
+              lineHeight: 1.8,
+            }}
+          >
+            O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos
+            as linhas de força do seu rosto, a sua estrutura óssea e o seu momento
+            profissional para desenhar a estética que projeta a sua melhor versão.
+          </p>
+        </div>
 
         {/* Process Grid — 3 columns */}
         <div
@@ -100,15 +97,15 @@ export function VisagismScience() {
           style={{ borderTop: "1px solid rgb(39,39,42)" }}
         >
           {PROCESS_STEPS.map((step, idx) => (
-            <div key={idx} className="text-center flex flex-col items-center" data-animate="science-el">
+            <div key={idx} className="w-full flex flex-col items-center text-center" data-animate="science-el">
               <div
-                className="font-display font-bold mb-4"
+                className="font-display font-bold mb-4 w-full text-center"
                 style={{ fontSize: "1.25rem", color: "#f1c97d" }}
               >
                 {step.title}
               </div>
               <p
-                className="font-body text-sm leading-relaxed max-w-2xl mx-auto text-center"
+                className="font-body text-sm leading-relaxed max-w-[280px] text-center"
                 style={{ color: "rgb(113,113,122)" }}
               >
                 {step.desc}

@@ -10,64 +10,98 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function TransformationShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollPinRef = useRef<HTMLDivElement>(null);
   
-  const [progress, setProgress] = useState(0); 
-  const [isDragging, setIsDragging] = useState(false);
+  // React state para atualização de textos (debounce via RAF para fluidez ou direto)
+  const [targetProgress, setTargetProgress] = useState(0); 
 
-  const isDraggingRef = useRef(isDragging);
+  // Refs de estado para lógica de animação
+  const physicsProgress = useRef(0);
+  const targetProgressRef = useRef(0);
+  const isDraggingRef = useRef(false);
+  
+  const afterImageRef = useRef<HTMLDivElement>(null);
+  const antesImageWrapperRef = useRef<HTMLDivElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    isDraggingRef.current = isDragging;
-  }, [isDragging]);
+    targetProgressRef.current = targetProgress;
+  }, [targetProgress]);
 
   useGSAP(
     () => {
-      const pinTarget = scrollPinRef.current;
-      if (!pinTarget) return;
+      const section = sectionRef.current;
+      if (!section) return;
 
+      // Usando ScrollTrigger apenas para ler a barra de progresso em tempo real do container sticky
       ScrollTrigger.create({
-        trigger: pinTarget,
+        trigger: section, 
         start: "top top",
         end: "bottom bottom",
-        scrub: 1, 
-        pin: true,
-        // Sync scroll if user is not manually dragging
+        scrub: true,
+        // NÃO RETEMOS SCROLL JS! Usamos apenas o progresso nativo para não bugar o CSS
         onUpdate: (self) => {
           if (!isDraggingRef.current) {
-            setProgress(self.progress * 100);
+            setTargetProgress(self.progress * 100);
           }
         },
       });
+
+      // Ticker para atualizar frame a frame a alavanca (clipPath e Scale)
+      const updatePhysics = () => {
+        const LERP_FACTOR = 0.12; 
+        physicsProgress.current += (targetProgressRef.current - physicsProgress.current) * LERP_FACTOR;
+        const p = physicsProgress.current;
+
+        if (afterImageRef.current) {
+          // Clip path clássico livre de bugs de maskImage
+          afterImageRef.current.style.clipPath = `inset(0% ${100 - p}% 0% 0%)`;
+        }
+        if (dividerRef.current) {
+          dividerRef.current.style.left = `${p}%`;
+        }
+        if (antesImageWrapperRef.current) {
+           // Escala diminui de forma fluida de 1.30 até 1.0 para equiparar
+           const scaleValue = 1.30 - (0.30 * (p / 100));
+           antesImageWrapperRef.current.style.transform = `scale(${scaleValue})`;
+        }
+      };
+
+      gsap.ticker.add(updatePhysics);
+      
+      return () => {
+        gsap.ticker.remove(updatePhysics);
+      };
     },
     { scope: sectionRef }
   );
 
   return (
     <div ref={sectionRef} className="relative w-full bg-[#0a0a0a]" style={{ height: "200vh" }}>
-      <div ref={scrollPinRef} className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden px-6 lg:px-12">
+      {/* Container "Fixed/Sticky" controlado 100% via CSS. */}
+      <div className="sticky top-0 w-full h-screen flex flex-col justify-center items-center overflow-hidden px-6 lg:px-12">
         
-        {/* Cabeçalho Textual Isolado (Acima das fotos) */}
+        {/* Cabeçalho */}
         <div className="w-full flex flex-col items-center justify-center text-center pb-8 z-10 pointer-events-none">
           <span
             className="font-display font-bold uppercase block mb-4"
             style={{
               fontSize: "12px",
               letterSpacing: "0.3em",
-              color: progress < 50 ? "rgb(161,161,170)" : "#f1c97d",
+              color: targetProgress < 50 ? "rgb(161,161,170)" : "#f1c97d",
               transition: "color 0.4s ease",
             }}
           >
-            {progress < 50 ? "Antes" : "Depois"}
+            {targetProgress < 50 ? "Antes" : "Depois"}
           </span>
           <h2
             className="font-display font-extrabold tracking-tighter leading-snug"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "#fafafa",
-              minHeight: "130px", // Maintains space so the layout doesn't jump
+              minHeight: "130px", 
             }}
           >
-            {progress < 50 ? (
+            {targetProgress < 50 ? (
               <span className="block animate-fade-up">A versão que o espelho<br />não questiona.</span>
             ) : (
               <span className="block animate-fade-up text-[#f1c97d]">A versão que o mercado<br />não esquece.</span>
@@ -75,48 +109,49 @@ export function TransformationShowcase() {
           </h2>
         </div>
 
-        {/* Container do Slider */}
-        <div className="relative w-full max-w-6xl mx-auto h-[50vh] md:h-[65vh] rounded-3xl overflow-hidden cursor-ew-resize shadow-2xl">
+        {/* Caixa de Showcase */}
+        <div className="relative w-full max-w-6xl mx-auto h-[50vh] md:h-[65vh] rounded-3xl overflow-hidden cursor-ew-resize shadow-[0_30px_70px_rgba(0,0,0,0.8)]">
           
-          {/* Base Layer: Antes (Sempre visível no fundo) */}
-          <div className="absolute inset-0 h-full w-full z-10 bg-[#1c1b1b]">
-            <Image 
-              src="/antes.png" 
-              alt="Antes da transformação" 
-              fill 
-              priority 
-              quality={100}
-              className="object-cover object-center pointer-events-none" 
-            />
-            {/* O degradê preto/escurecimento sobre o "Antes" */}
-            <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+          {/* Fundo Antes */}
+          <div className="absolute inset-0 h-full w-full z-10 bg-[#1c1b1b] overflow-hidden">
+            <div ref={antesImageWrapperRef} className="absolute inset-0 w-full h-full transform origin-center">
+              <Image 
+                src="/antes.png" 
+                alt="Antes da transformação" 
+                fill 
+                priority 
+                className="object-cover object-center pointer-events-none" 
+              />
+              <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+            </div>
           </div>
 
-          {/* Top Layer: Depois (Cortado horizontalmente pelo clip-path) */}
+          {/* Fundo Depois */}
           <div
+            ref={afterImageRef}
             className="absolute inset-0 h-full w-full z-20 bg-[#0a0a0a]"
-            style={{ clipPath: `inset(0% ${100 - progress}% 0% 0%)` }}
+            style={{ clipPath: `inset(0% 100% 0% 0%)` }}
           >
             <Image 
               src="/depois.png" 
               alt="Depois da transformação" 
               fill 
               priority 
-              quality={100}
               className="object-cover object-center pointer-events-none" 
             />
-            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+            {/* Um brilho bem sutil na borda de encontro seria feito com uma linha, que é a divider line. */}
           </div>
 
-          {/* Divisor Visual (A linha que separa) */}
+          {/* Barra Divisora com Glow que finge o Degradê de Corte Suave */}
           <div
+            ref={dividerRef}
             className="absolute top-0 bottom-0 z-30 flex justify-center items-center pointer-events-none"
-            style={{ left: `${progress}%`, width: "2px", transform: "translateX(-50%)" }}
+            style={{ left: `0%`, width: "4px", transform: "translateX(-50%)" }}
           >
-            <div className="absolute inset-y-0 w-px bg-[#f1c97d] shadow-[0_0_10px_rgba(241,201,125,0.7)]" />
+            {/* O "Glow" do degradê da linha */}
+            <div className="absolute inset-y-0 w-px bg-[#f1c97d] shadow-[0_0_20px_6px_rgba(241,201,125,0.4)]" />
             
-            {/* Botão de Arrastar */}
-            <div className="absolute w-12 h-12 bg-[#f1c97d] rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(241,201,125,0.5)]">
+            <div className="absolute w-12 h-12 bg-[#f1c97d] rounded-full flex flex-col items-center justify-center shadow-[0_0_25px_rgba(241,201,125,0.8)] transform transition-transform">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 18L9 12L15 6" />
                 <path d="M9 18L15 12L9 6" transform="translate(6, 0)" />
@@ -124,19 +159,18 @@ export function TransformationShowcase() {
             </div>
           </div>
 
-          {/* Controlador HTML Range Nativo */}
           <input
             type="range"
             min="0"
             max="100"
             step="0.1"
-            value={progress}
-            onChange={(e) => setProgress(Number(e.target.value))}
-            onMouseDown={() => setIsDragging(true)}
-            onMouseUp={() => setIsDragging(false)}
-            onTouchStart={() => setIsDragging(true)}
-            onTouchEnd={() => setIsDragging(false)}
-            className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-ew-resize m-0 p-0"
+            value={targetProgress}
+            onChange={(e) => setTargetProgress(Number(e.target.value))}
+            onMouseDown={() => { isDraggingRef.current = true; }}
+            onMouseUp={() => { isDraggingRef.current = false; }}
+            onTouchStart={() => { isDraggingRef.current = true; }}
+            onTouchEnd={() => { isDraggingRef.current = false; }}
+            className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-ew-resize appearance-none m-0 p-0"
             style={{ WebkitAppearance: 'none' }}
           />
         </div>

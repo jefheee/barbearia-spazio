@@ -77,21 +77,20 @@ export function SpazioExperience() {
   return (
     <section
       ref={sectionRef}
-      className="flex flex-col md:flex-row"
-      style={{ minHeight: "70vh" }}
+      className="flex flex-col w-full"
       aria-label="Comparativo — O Padrão vs A Consultoria Spazio"
     >
-      {/* Left Panel — "O Padrão" (Ice) */}
+      {/* Top Panel — "O Padrão" (Ice) */}
       <div
         data-animate="exp-panel"
-        className="w-full md:w-1/2 flex flex-col justify-center items-center text-center px-6 lg:px-12"
+        className="w-full flex flex-col justify-center items-center text-center px-6 lg:px-12"
         style={{
           backgroundColor: "#fafafa",
           paddingTop: "clamp(3rem, 6vw, 6rem)",
           paddingBottom: "clamp(3rem, 6vw, 6rem)",
         }}
       >
-        <div className="max-w-lg mx-auto flex flex-col items-center">
+        <div className="max-w-2xl mx-auto flex flex-col items-center">
           <span
             className="font-display font-bold uppercase mb-4 block text-center"
             style={{
@@ -111,17 +110,17 @@ export function SpazioExperience() {
           >
             O Padrão
           </h2>
-          <ul className="space-y-8 flex flex-col items-center">
+          <ul className="space-y-8 flex flex-col items-center w-full">
             {STANDARD_ITEMS.map((item, i) => (
-              <li key={i} className="flex flex-col items-center">
+              <li key={i} className="flex flex-col items-center w-full">
                 <span
-                  className="font-bold uppercase tracking-tight italic text-center"
+                  className="font-bold uppercase tracking-tight italic text-center w-full"
                   style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
                 >
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-base md:text-lg max-w-md mt-4 text-center leading-relaxed"
+                  className="font-body text-base md:text-lg max-w-sm mt-4 text-center leading-relaxed"
                   style={{ color: "rgb(82,82,91)" }}
                 >
                   {item.desc}
@@ -132,10 +131,10 @@ export function SpazioExperience() {
         </div>
       </div>
 
-      {/* Right Panel — "A Consultoria Spazio" (Dark) */}
+      {/* Bottom Panel — "A Consultoria Spazio" (Dark) */}
       <div
         data-animate="exp-panel"
-        className="w-full md:w-1/2 flex flex-col justify-center items-center text-center px-6 lg:px-12"
+        className="w-full flex flex-col justify-center items-center text-center px-6 lg:px-12"
         style={{
           backgroundColor: "#0a0a0a",
           paddingTop: "clamp(3rem, 6vw, 6rem)",

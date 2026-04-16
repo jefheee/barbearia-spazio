@@ -126,16 +126,6 @@ export function HeroSection() {
           >
             Iniciar Transformação
           </a>
-          <span
-            className="font-body uppercase"
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.2em",
-              color: "rgba(250,250,250,0.3)",
-            }}
-          >
-            Av. Pedra Branca, 303 · Palhoça
-          </span>
         </div>
       </div>
 
