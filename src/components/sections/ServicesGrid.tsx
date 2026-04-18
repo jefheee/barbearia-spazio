@@ -61,7 +61,7 @@ export function ServicesGrid() {
     <section
       ref={sectionRef}
       id="servicos"
-      className="w-full"
+      className="w-full flex flex-col items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "#fafafa",
         paddingTop: "clamp(4rem, 10vw, 12rem)",
@@ -262,37 +262,8 @@ export function ServicesGrid() {
             />
           </div>
 
-          {/* Social Proof Card */}
-          <div
-            data-animate="grid-el"
-            className="w-full flex flex-col justify-center items-center text-center"
-            style={{
-              backgroundColor: "#201f1f",
-              borderRadius: "2rem",
-              padding: "clamp(2rem, 4vw, 3rem)",
-              minHeight: "240px",
-            }}
-          >
-            <div className="flex gap-1 mb-4" aria-label="4.9 de 5 estrelas">
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} />
-              ))}
-            </div>
-            <span
-              className="font-display font-black mb-1"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#f1c97d", lineHeight: 1 }}
-            >
-              4.9 / 5.0
-            </span>
-            <p
-              className="font-body uppercase mt-3 max-w-sm"
-              style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgb(113,113,122)" }}
-            >
-              Baseado em 258 avaliações reais de clientes exigentes no Google Maps.
-            </p>
           </div>
         </div>
       </div>
     </section>
   );
-}

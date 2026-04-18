@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Script from "next/script";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -80,23 +81,38 @@ export function LocationSection() {
           </p>
         </div>
 
-        {/* Map Container */}
-        <div
-          data-animate="loc-el"
-          className="w-full aspect-square md:aspect-[21/9] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl relative"
-          style={{ border: "1px solid rgba(255,255,255,0.05)" }}
-        >
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1767.471504360043!2d-48.678119364275354!3d-27.626281682078613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952735f1211b5bfd%3A0x92dffb5f07efb579!2sBarbearia%20Spazio!5e0!3m2!1spt-BR!2sbr!4v1776485668963!5m2!1spt-BR!2sbr"
-            width="800"
-            height="600"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-full border-0 grayscale opacity-80 transition-all hover:opacity-100 hover:grayscale-0 duration-700"
-            title="Localização Barbearia Spazio no Google Maps"
-          ></iframe>
+        {/* Conteúdo Empilhado: Mapa + Avaliações */}
+        <div className="w-full flex flex-col gap-12">
+          
+          {/* Map Container */}
+          <div
+            data-animate="loc-el"
+            className="w-full aspect-square md:aspect-[21/9] lg:h-[600px] rounded-3xl overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.8)] relative"
+            style={{ border: "1px solid rgba(255,255,255,0.05)" }}
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1767.471504360043!2d-48.678119364275354!3d-27.626281682078613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952735f1211b5bfd%3A0x92dffb5f07efb579!2sBarbearia%20Spazio!5e0!3m2!1spt-BR!2sbr!4v1776485668963!5m2!1spt-BR!2sbr"
+              width="800"
+              height="600"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full border-0 grayscale opacity-80 transition-all hover:opacity-100 hover:grayscale-0 duration-700"
+              title="Localização Barbearia Spazio no Google Maps"
+            ></iframe>
+          </div>
+
+          {/* Reviews Container (Elfsight) */}
+          <div
+            data-animate="loc-el"
+            className="w-full relative shadow-[0_30px_70px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden bg-[#1c1b1b] px-4 py-8 md:px-12 md:py-12" 
+            style={{ minHeight: "400px" }}
+          >
+            <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+            <div className="elfsight-app-623d6ed5-2c53-4c65-8f9e-ffa8af6a0def" data-elfsight-app-lazy></div>
+          </div>
+
         </div>
       </div>
     </section>

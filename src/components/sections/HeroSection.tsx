@@ -26,7 +26,7 @@ export function HeroSection() {
       <span
         key={index}
         data-animate="headline-word"
-        className="inline-block will-change-[clip-path,opacity] pt-2 pb-4 -mb-4 mr-[0.2em]"
+        className="inline-block will-change-[clip-path,opacity] pt-2 pb-4 -mb-4 mr-[0.4em]"
       >
         {word}
       </span>

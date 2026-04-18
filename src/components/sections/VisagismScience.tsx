@@ -63,12 +63,12 @@ export function VisagismScience() {
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
         
-        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-8 md:mb-12">
+        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-16 md:mb-20">
           <h2
             className="font-display font-bold tracking-tighter w-full text-center"
             style={{
               fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
-              lineHeight: 1.1,
+              lineHeight: 1.25,
               color: "#fafafa",
             }}
           >
@@ -77,13 +77,13 @@ export function VisagismScience() {
           </h2>
         </div>
 
-        <div data-animate="science-el" className="w-full flex justify-center text-center mb-16 md:mb-24">
+        <div data-animate="science-el" className="w-full flex justify-center text-center mb-24 md:mb-32">
           <p
             className="font-body leading-relaxed max-w-3xl text-center px-4"
             style={{
-              fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
+              fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
               color: "rgb(161,161,170)",
-              lineHeight: 1.8,
+              lineHeight: 2.0,
             }}
           >
             O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos
@@ -94,20 +94,20 @@ export function VisagismScience() {
 
         {/* Process Grid — 3 columns */}
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 pt-20 w-full"
+          className="grid grid-cols-1 md:grid-cols-3 gap-24 lg:gap-32 pt-24 md:pt-32 w-full"
           style={{ borderTop: "1px solid rgb(39,39,42)" }}
         >
           {PROCESS_STEPS.map((step, idx) => (
             <div key={idx} className="w-full flex flex-col items-center text-center px-4" data-animate="science-el">
               <div
-                className="font-display font-bold mb-5 w-full text-center tracking-wide"
-                style={{ fontSize: "1.35rem", color: "#f1c97d" }}
+                className="font-display font-bold w-full text-center tracking-wide"
+                style={{ fontSize: "1.5rem", color: "#f1c97d", marginBottom: "1.75rem" }}
               >
                 {step.title}
               </div>
               <p
-                className="font-body text-[15px] leading-relaxed w-full max-w-[320px] text-center"
-                style={{ color: "rgb(161,161,170)" }}
+                className="font-body leading-relaxed w-full max-w-[340px] text-center"
+                style={{ fontSize: "16px", color: "rgb(161,161,170)", lineHeight: 1.8 }}
               >
                 {step.desc}
               </p>
