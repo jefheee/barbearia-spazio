@@ -261,8 +261,6 @@ export function ServicesGrid() {
               aria-hidden="true"
             />
           </div>
-
-          </div>
         </div>
       </div>
     </section>
