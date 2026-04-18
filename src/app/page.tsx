@@ -3,6 +3,7 @@ import { SpazioExperience } from "@/components/sections/SpazioExperience";
 import { VisagismScience } from "@/components/sections/VisagismScience";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { TransformationShowcase } from "@/components/sections/TransformationShowcase";
+import { LocationSection } from "@/components/sections/LocationSection";
 import { ConciergeTrigger } from "@/components/ui/ConciergeTrigger";
 
 /**
@@ -26,6 +27,7 @@ export default function HomePage() {
       <VisagismScience />
       <TransformationShowcase />
       <ServicesGrid />
+      <LocationSection />
       <ConciergeTrigger />
     </>
   );

@@ -26,8 +26,7 @@ export function HeroSection() {
       <span
         key={index}
         data-animate="headline-word"
-        className="inline-block will-change-[clip-path,opacity] pb-2"
-        style={{ marginRight: "0.3em" }}
+        className="inline-block will-change-[clip-path,opacity] pt-2 pb-4 -mb-4 mr-[0.2em]"
       >
         {word}
       </span>
@@ -87,21 +86,21 @@ export function HeroSection() {
       {/* Content — centralizado com max-w-5xl e respiro generoso */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-5xl mx-auto px-6 lg:px-12 mt-20">
         
-        {/* Headline — leading-none para respiro e tracking-tight */}
+        {/* Headline — leading-none para respiro, tracking e tamanho ajustados */}
         <h1
-          className="font-display font-extrabold tracking-tight leading-none mb-0"
+          className="font-display font-extrabold tracking-normal leading-[1.1] mb-0"
           style={{
-            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+            fontSize: "clamp(2rem, 5vw, 4.5rem)",
             color: "#fafafa",
           }}
         >
           {renderHeadline()}
         </h1>
 
-        {/* Subheadline — max-w-2xl para conforto de leitura, mt-6 e leading-relaxed */}
+        {/* Subheadline — max-w-2xl para conforto de leitura, margem maior */}
         <p
           data-animate="subheadline"
-          className="font-body leading-relaxed max-w-2xl mx-auto mt-6"
+          className="font-body leading-relaxed max-w-2xl mx-auto mt-10 md:mt-14"
           style={{
             fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
             color: "rgba(250,250,250,0.55)",
@@ -111,8 +110,8 @@ export function HeroSection() {
           autoridade através da estética.
         </p>
 
-        {/* CTA — mt-16 para descer */}
-        <div data-animate="cta" className="flex flex-col items-center gap-6 mt-16">
+        {/* CTA — mt maior para afastar do texto */}
+        <div data-animate="cta" className="flex flex-col items-center gap-6 mt-20 md:mt-24">
           <a
             href="https://wa.me/5548999999999"
             target="_blank"

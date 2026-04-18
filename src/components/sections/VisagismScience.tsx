@@ -56,29 +56,30 @@ export function VisagismScience() {
       className="w-full flex justify-center overflow-hidden"
       style={{
         backgroundColor: "#0a0a0a",
-        paddingTop: "clamp(5rem, 10vw, 8rem)",
-        paddingBottom: "clamp(5rem, 10vw, 8rem)",
+        paddingTop: "clamp(6rem, 12vw, 10rem)",
+        paddingBottom: "clamp(6rem, 12vw, 10rem)",
       }}
       aria-label="A Ciência do Visagismo"
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
         
-        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-8">
+        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-8 md:mb-12">
           <h2
             className="font-display font-bold tracking-tighter w-full text-center"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.75rem)",
+              fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
+              lineHeight: 1.1,
               color: "#fafafa",
             }}
           >
-            Não é um corte.{" "}
-            <span style={{ color: "#f1c97d" }}>É engenharia de imagem.</span>
+            Não é um corte.<br className="md:hidden" />
+            <span style={{ color: "#f1c97d" }}> É engenharia de imagem.</span>
           </h2>
         </div>
 
-        <div data-animate="science-el" className="w-full flex justify-center text-center mb-20">
+        <div data-animate="science-el" className="w-full flex justify-center text-center mb-16 md:mb-24">
           <p
-            className="font-body leading-relaxed max-w-2xl text-center"
+            className="font-body leading-relaxed max-w-3xl text-center px-4"
             style={{
               fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
               color: "rgb(161,161,170)",
@@ -93,20 +94,20 @@ export function VisagismScience() {
 
         {/* Process Grid — 3 columns */}
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16 w-full"
+          className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 pt-20 w-full"
           style={{ borderTop: "1px solid rgb(39,39,42)" }}
         >
           {PROCESS_STEPS.map((step, idx) => (
-            <div key={idx} className="w-full flex flex-col items-center text-center" data-animate="science-el">
+            <div key={idx} className="w-full flex flex-col items-center text-center px-4" data-animate="science-el">
               <div
-                className="font-display font-bold mb-4 w-full text-center"
-                style={{ fontSize: "1.25rem", color: "#f1c97d" }}
+                className="font-display font-bold mb-5 w-full text-center tracking-wide"
+                style={{ fontSize: "1.35rem", color: "#f1c97d" }}
               >
                 {step.title}
               </div>
               <p
-                className="font-body text-sm leading-relaxed max-w-[280px] text-center"
-                style={{ color: "rgb(113,113,122)" }}
+                className="font-body text-[15px] leading-relaxed w-full max-w-[320px] text-center"
+                style={{ color: "rgb(161,161,170)" }}
               >
                 {step.desc}
               </p>
