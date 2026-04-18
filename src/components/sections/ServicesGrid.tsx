@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,21 +15,6 @@ gsap.registerPlugin(ScrollTrigger);
  * Text blocks: max-w-2xl where needed.
  * All cards: rounded-3xl (2rem).
  */
-
-function StarIcon() {
-  return (
-    <svg
-      className="w-4 h-4"
-      style={{ color: "#f1c97d" }}
-      fill="currentColor"
-      viewBox="0 0 20 20"
-      aria-hidden="true"
-    >
-      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-    </svg>
-  );
-}
-
 export function ServicesGrid() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -69,10 +55,10 @@ export function ServicesGrid() {
       }}
       aria-label="Engenharia Estética Aplicada — Serviços"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col items-center justify-center text-center">
         {/* Section Header */}
         <div
-          className="flex flex-col items-center justify-center mb-24 gap-4 w-full"
+          className="flex flex-col items-center justify-center mb-16 md:mb-24 gap-4 w-full"
           data-animate="grid-el"
         >
           <div className="max-w-2xl mx-auto text-center">
@@ -108,12 +94,13 @@ export function ServicesGrid() {
           </div>
         </div>
 
-        {/* Serviços em Pilha (Stack Central) */}
-        <div className="flex flex-col gap-8 w-full max-w-4xl mx-auto">
-          {/* Main Feature Card */}
+        {/* Bento Grid Layout - 12 Colunas */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full mx-auto">
+          
+          {/* Main Feature Card - Consultoria Visagista (Full Width Header Card) */}
           <div
             data-animate="grid-el"
-            className="w-full relative overflow-hidden group flex flex-col justify-center items-center text-center"
+            className="md:col-span-12 w-full relative overflow-hidden group flex flex-col justify-center items-center text-center"
             style={{
               backgroundColor: "#1c1b1b",
               borderRadius: "2rem",
@@ -121,7 +108,7 @@ export function ServicesGrid() {
               padding: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center relative z-10">
               <span
                 className="inline-block font-body uppercase mb-6"
                 style={{
@@ -168,12 +155,14 @@ export function ServicesGrid() {
                 </a>
               </div>
             </div>
+            {/* Opcional: Efeito Glow Sutil */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#f1c97d] opacity-[0.05] blur-[100px] pointer-events-none rounded-full" />
           </div>
 
           {/* Side Card — Visagismo Óptico */}
           <div
             data-animate="grid-el"
-            className="w-full flex flex-col justify-between items-center text-center"
+            className="md:col-span-6 w-full flex flex-col justify-between items-center text-center shadow-sm"
             style={{
               backgroundColor: "#201f1f",
               borderRadius: "2rem",
@@ -193,7 +182,7 @@ export function ServicesGrid() {
                 Visagismo Óptico
               </h3>
               <p
-                className="font-body text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
+                className="font-body text-base md:text-lg leading-relaxed max-w-sm mx-auto"
                 style={{ color: "rgb(161,161,170)" }}
               >
                 Consultoria para escolha de armações e acessórios que complementam
@@ -208,10 +197,10 @@ export function ServicesGrid() {
                 Exclusive Add-on
               </div>
               <span
-                className="font-bold tracking-tight"
-                style={{ fontSize: "1.5rem", color: "#fafafa" }}
+                className="font-bold tracking-tight italic"
+                style={{ fontSize: "1.25rem", color: "#f1c97d" }}
               >
-                Sob Consulta
+                Valor sob avaliação
               </span>
             </div>
           </div>
@@ -219,7 +208,7 @@ export function ServicesGrid() {
           {/* Side Card — Ritual de Barba */}
           <div
             data-animate="grid-el"
-            className="w-full relative overflow-hidden flex flex-col justify-center items-center text-center"
+            className="md:col-span-6 w-full relative overflow-hidden flex flex-col justify-between items-center text-center shadow-lg"
             style={{
               backgroundColor: "#ffffff",
               border: "1px solid rgb(228,228,231)",
@@ -232,24 +221,25 @@ export function ServicesGrid() {
                 className="font-display font-bold tracking-tighter mb-4 leading-snug text-center"
                 style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "rgb(24,24,27)" }}
               >
-                Ritual Spazio de Barba
+                Ritual Spazio
               </h3>
               <p
-                className="font-body text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
+                className="font-body text-base md:text-lg leading-relaxed max-w-sm mx-auto"
                 style={{ color: "rgb(82,82,91)" }}
               >
                 Relaxamento e precisão. Toalhas quentes, óleos essenciais e o
-                acabamento impecável da arquitetura facial.
+                acabamento impecável da estrutura facial.
               </p>
             </div>
-            <div className="relative z-10 mt-8">
+            <div className="relative z-10 mt-8 pt-8 flex flex-col items-center border-t border-gray-100 w-full">
               <span
-                className="font-black italic"
-                style={{ fontSize: "1.75rem", color: "rgb(24,24,27)" }}
+                className="font-bold tracking-tight uppercase"
+                style={{ fontSize: "0.875rem", letterSpacing: "0.1em", color: "rgb(24,24,27)" }}
               >
-                R$ 180
+                Exclusivo no local
               </span>
             </div>
+            {/* Decoração geométrica */}
             <div
               className="absolute -right-8 -bottom-8"
               style={{
@@ -261,6 +251,77 @@ export function ServicesGrid() {
               aria-hidden="true"
             />
           </div>
+
+          {/* New Card — Atmosphere & Bar */}
+          <div
+            data-animate="grid-el"
+            className="md:col-span-7 lg:col-span-8 w-full relative overflow-hidden flex flex-col justify-center text-left"
+            style={{
+              backgroundColor: "#050505",
+              borderRadius: "2rem",
+              padding: "clamp(2rem, 4vw, 3rem)",
+              minHeight: "300px"
+            }}
+          >
+            {/* A subtle image background could go here if we had one, using absolute inset-0 with opacity */}
+            <div className="relative z-10 flex flex-col items-start h-full justify-between">
+              <div>
+                <span
+                  className="font-body uppercase mb-3 inline-block"
+                  style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgb(161,161,170)" }}
+                >
+                  Experience
+                </span>
+                <h3
+                  className="font-display font-bold tracking-tighter mb-4 leading-snug"
+                  style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#fafafa" }}
+                >
+                  Atmosphere & Bar
+                </h3>
+                <p
+                  className="font-body text-base md:text-lg leading-relaxed max-w-md"
+                  style={{ color: "rgb(161,161,170)" }}
+                >
+                  O seu tempo é valioso. Aguarde seu atendimento desfrutando de cerveja Corona, Heineken, Café Expresso e um Lounge equipado com PS5.
+                </p>
+              </div>
+            </div>
+            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-black/50 to-transparent pointer-events-none" />
+          </div>
+
+          {/* New Card — Produtos Premium */}
+          <div
+            data-animate="grid-el"
+            className="md:col-span-5 lg:col-span-4 w-full relative overflow-hidden flex flex-col justify-center items-center text-center shadow-sm"
+            style={{
+              backgroundColor: "#f1c97d",
+              borderRadius: "2rem",
+              padding: "clamp(2rem, 4vw, 3rem)",
+              minHeight: "300px"
+            }}
+          >
+            <div className="relative z-10 flex flex-col items-center">
+              <span
+                className="font-body uppercase mb-3 inline-block"
+                style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(10,10,10,0.6)" }}
+              >
+                Alta Performance
+              </span>
+              <h3
+                className="font-display font-bold tracking-tighter mb-4 leading-snug"
+                style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#0a0a0a" }}
+              >
+                Produtos Premium
+              </h3>
+              <p
+                className="font-body text-base md:text-lg leading-relaxed max-w-sm"
+                style={{ color: "rgba(10,10,10,0.8)" }}
+              >
+                Parceria oficial com as linhas exclusivas da <strong>Keune Haircosmetics</strong> e <strong>Barba de Respeito</strong> para os clientes mais exigentes.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

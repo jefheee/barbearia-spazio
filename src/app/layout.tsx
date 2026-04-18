@@ -66,11 +66,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="min-h-full flex flex-col bg-background text-foreground font-body"
+        className="min-h-full flex flex-col bg-background text-foreground font-body overflow-x-hidden"
         suppressHydrationWarning
       >
         <LenisProvider>
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 w-full overflow-x-hidden">{children}</main>
         </LenisProvider>
       </body>
     </html>

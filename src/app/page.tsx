@@ -4,6 +4,7 @@ import { VisagismScience } from "@/components/sections/VisagismScience";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { TransformationShowcase } from "@/components/sections/TransformationShowcase";
 import { LocationSection } from "@/components/sections/LocationSection";
+import { AtmosphereVideo } from "@/components/sections/AtmosphereVideo";
 import { ConciergeTrigger } from "@/components/ui/ConciergeTrigger";
 
 /**
@@ -16,8 +17,9 @@ import { ConciergeTrigger } from "@/components/ui/ConciergeTrigger";
  * 2. SpazioExperience (Split: Ice left / Dark right) — Price objection breaker
  * 3. VisagismScience (Dark #0a0a0a) — Method authority + 3-step process
  * 4. TransformationShowcase (Ice #fafafa) — Video case study
- * 5. ServicesGrid (Ice #fafafa) — Bento grid with pricing
- * 6. ConciergeTrigger (Floating) — Agentic AI pill
+ * 5. AtmosphereVideo (Video Player for overall ambiance)
+ * 6. ServicesGrid (Ice #fafafa) — Bento grid with pricing
+ * 7. ConciergeTrigger (Floating) — Agentic AI pill
  */
 export default function HomePage() {
   return (
@@ -26,6 +28,7 @@ export default function HomePage() {
       <SpazioExperience />
       <VisagismScience />
       <TransformationShowcase />
+      <AtmosphereVideo />
       <ServicesGrid />
       <LocationSection />
       <ConciergeTrigger />
