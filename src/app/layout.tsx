@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { LenisProvider } from "@/components/ui/LenisProvider";
 
 /**
  * Fontes da Marca Spazio — High-Ticket 2026
@@ -68,7 +69,9 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-background text-foreground font-body"
         suppressHydrationWarning
       >
-        <main className="flex-1">{children}</main>
+        <LenisProvider>
+          <main className="flex-1">{children}</main>
+        </LenisProvider>
       </body>
     </html>
   );
