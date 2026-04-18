@@ -2,10 +2,10 @@
 
 export function AtmosphereVideo() {
   return (
-    <section className="w-full px-6 lg:px-12 py-12" style={{ backgroundColor: "#fafafa" }}>
-      <div className="relative w-full h-[60vh] rounded-3xl overflow-hidden mx-auto max-w-7xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] transform translate-z-0">
+    <section className="w-full px-6 lg:px-12 py-12 pb-4" style={{ backgroundColor: "#fafafa" }}>
+      <div className="relative w-full h-[60vh] rounded-[2rem] overflow-hidden mx-auto max-w-7xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] transform translate-z-0">
         <video 
-          src="/videospazio.mp4" 
+          src="/vídeospazio.mp4" 
           autoPlay 
           muted 
           loop 

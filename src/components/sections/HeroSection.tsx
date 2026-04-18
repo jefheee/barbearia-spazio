@@ -18,25 +18,35 @@ export function HeroSection() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%", // Menos tempo de pin (reduzido de 300%)
+          end: "+=150%", // Menos tempo de pin
           pin: true,
-          scrub: 1, // Suavização nativa
+          scrub: 1, 
         },
       });
 
-      // 1. O texto desaparece e escala para evitar conflitos visuais
+      // 1. O texto desaparece e escala
       tl.to(
         textRef.current,
         { opacity: 0, scale: 0.9, duration: 0.3, ease: "power2.out" },
         0
       );
 
-      // 2. O portal (clip-path circle) abre revelando o fundo 
-      // Initial: circle(0% at 50% 50%) -> Target: circle(150% at 50% 50%)
-      tl.fromTo(
-        bgWrapperRef.current,
-        { clipPath: "circle(0% at 50% 50%)" },
-        { clipPath: "circle(150% at 50% 50%)", duration: 1, ease: "power2.inOut" },
+      // 2. Animação de clip-path super confiável usando proxy numérico
+      const proxy = { radius: 0 };
+      tl.to(
+        proxy,
+        {
+          radius: 150,
+          duration: 1,
+          ease: "power2.inOut",
+          onUpdate: () => {
+            if (bgWrapperRef.current) {
+              const r = proxy.radius;
+              bgWrapperRef.current.style.clipPath = `circle(${r}% at 50% 50%)`;
+              bgWrapperRef.current.style.WebkitClipPath = `circle(${r}% at 50% 50%)`;
+            }
+          },
+        },
         0.1
       );
     }, containerRef);
@@ -49,7 +59,7 @@ export function HeroSection() {
       ref={containerRef}
       className="relative h-screen w-full bg-[#050505] overflow-hidden"
     >
-      {/* Camada 1: Imagem de Fundo Premium (Oculta inicialmente pelo clip-path) */}
+      {/* Camada 1: Imagem de Fundo Premium (Oculta inicialmente pelo clip-path 0%) */}
       <div
         ref={bgWrapperRef}
         className="absolute inset-0 w-full h-full z-10"
@@ -61,10 +71,9 @@ export function HeroSection() {
           fill
           priority
           quality={100}
-          className="object-cover opacity-80 mix-blend-overlay scale-110 md:scale-105" // Escala suave, máxima de 1.1
+          className="object-cover opacity-80 mix-blend-overlay scale-110 md:scale-105" 
           sizes="100vw"
         />
-        {/* Overlay escuro nativo */}
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
@@ -78,7 +87,7 @@ export function HeroSection() {
           <br />
           <span className="font-bold">Imagem</span>
         </h1>
-        <p className="text-gray-400 mt-4 font-inter text-sm tracking-widest uppercase shadow-black drop-shadow-lg">
+        <p className="text-gray-400 mt-4 font-inter text-sm tracking-widest uppercase drop-shadow-lg">
           Role para descobrir
         </p>
       </div>
