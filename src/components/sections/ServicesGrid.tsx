@@ -255,7 +255,7 @@ export function ServicesGrid() {
           {/* New Card — Atmosphere & Bar */}
           <div
             data-animate="grid-el"
-            className="md:col-span-7 lg:col-span-8 w-full relative overflow-hidden flex flex-col justify-center text-left"
+            className="md:col-span-6 w-full relative overflow-hidden flex flex-col justify-center text-left"
             style={{
               backgroundColor: "#050505",
               borderRadius: "2rem",
@@ -263,7 +263,6 @@ export function ServicesGrid() {
               minHeight: "300px"
             }}
           >
-            {/* A subtle image background could go here if we had one, using absolute inset-0 with opacity */}
             <div className="relative z-10 flex flex-col items-start h-full justify-between">
               <div>
                 <span
@@ -292,7 +291,7 @@ export function ServicesGrid() {
           {/* New Card — Produtos Premium */}
           <div
             data-animate="grid-el"
-            className="md:col-span-5 lg:col-span-4 w-full relative overflow-hidden flex flex-col justify-center items-center text-center shadow-sm"
+            className="md:col-span-6 w-full relative overflow-hidden flex flex-col justify-center items-center text-center shadow-sm"
             style={{
               backgroundColor: "#f1c97d",
               borderRadius: "2rem",
@@ -317,7 +316,7 @@ export function ServicesGrid() {
                 className="font-body text-base md:text-lg leading-relaxed max-w-sm"
                 style={{ color: "rgba(10,10,10,0.8)" }}
               >
-                Parceria oficial com as linhas exclusivas da <strong>Keune Haircosmetics</strong> e <strong>Barba de Respeito</strong> para os clientes mais exigentes.
+                Parceria oficial com as linhas exclusivas da <strong>Keune Haircosmetics</strong> e <strong>Barba de Respeito</strong> para clientes exigentes.
               </p>
             </div>
           </div>

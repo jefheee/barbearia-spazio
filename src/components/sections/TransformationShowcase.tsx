@@ -2,22 +2,38 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function TransformationShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
-  // Controle interativo pelo usuário
-  const [progress, setProgress] = useState(25); // Inicia nos 25% para mostrar um pouco do "Depois" e incitar o clique
+  const [progress, setProgress] = useState(0); 
+  const isDraggingRef = useRef(false);
   const isAfter = progress >= 50;
 
-  useEffect(() => {
-    // Reveal suave do depois para instigar a interação quando a página carrega
-    const timer = setTimeout(() => {
-      setProgress(50);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      ScrollTrigger.create({
+        trigger: section, 
+        start: "top center", // Inicia quando a seção bater no centro da tela
+        end: "bottom bottom", // Termina quando sair
+        scrub: 1.5, // Scrub suave
+        onUpdate: (self) => {
+          // Se o usuário estiver arrastando manualmente, ignoramos o scroll temporariamente
+          if (!isDraggingRef.current) {
+            setProgress(self.progress * 100);
+          }
+        }
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section 
@@ -38,11 +54,11 @@ export function TransformationShowcase() {
           {progress < 50 ? "Antes" : "Depois"}
         </span>
         <h2
-          className="font-display font-extrabold tracking-tighter leading-snug"
+          className="font-display font-extrabold tracking-tighter leading-snug transform-gpu"
           style={{
             fontSize: "clamp(2rem, 5vw, 3.5rem)",
             color: "#fafafa",
-            minHeight: "130px", // Evita pulo de layout quando o texto muda
+            minHeight: "130px",
           }}
         >
           {progress < 50 ? (
@@ -52,7 +68,7 @@ export function TransformationShowcase() {
           )}
         </h2>
         <p className="text-gray-400 mt-4 font-inter text-sm tracking-widest uppercase">
-          Arraste para interagir
+          Role a tela ou arraste para interagir
         </p>
       </div>
 
@@ -61,7 +77,7 @@ export function TransformationShowcase() {
         
         {/* Fundo Antes */}
         <div className="absolute inset-0 h-full w-full z-10 bg-[#1c1b1b] overflow-hidden">
-          <div className="absolute inset-0 w-full h-full transform origin-center">
+          <div className="absolute inset-0 w-full h-full transform origin-center" style={{ transform: `scale(${1.1 - (progress / 100) * 0.1})` }}>
             <Image 
               src="/antes.png" 
               alt="Antes da transformação" 
@@ -70,7 +86,6 @@ export function TransformationShowcase() {
               quality={90}
               className="object-cover object-center pointer-events-none" 
             />
-            {/* Overlay sutil para o Antes não gritar tanto nas cores */}
             <div className="absolute inset-0 bg-black/30 pointer-events-none" />
           </div>
         </div>
@@ -81,7 +96,7 @@ export function TransformationShowcase() {
           style={{ 
             clipPath: `inset(0% ${100 - progress}% 0% 0%)`, 
             WebkitClipPath: `inset(0% ${100 - progress}% 0% 0%)`,
-            transition: 'clip-path 0.1s ease-out, -webkit-clip-path 0.1s ease-out' 
+            transition: isDraggingRef.current ? 'none' : 'clip-path 0.1s ease-out, -webkit-clip-path 0.1s ease-out' 
           }}
         >
           <Image 
@@ -101,7 +116,7 @@ export function TransformationShowcase() {
             left: `${progress}%`, 
             width: "4px", 
             transform: "translateX(-50%)",
-            transition: 'left 0.1s ease-out'
+            transition: isDraggingRef.current ? 'none' : 'left 0.1s ease-out'
           }}
         >
           {/* Linha brilhante */}
@@ -117,7 +132,6 @@ export function TransformationShowcase() {
         </div>
 
         {/* Input Invisível para Arraste Nativo */}
-        {/* touch-action: pan-y é a mágica que permite que o usuário faça scroll vertical por cima do elemento sem ficar travado! */}
         <input
           type="range"
           min="0"
@@ -125,10 +139,14 @@ export function TransformationShowcase() {
           step="0.1"
           value={progress}
           onChange={(e) => setProgress(Number(e.target.value))}
+          onMouseDown={() => { isDraggingRef.current = true; }}
+          onMouseUp={() => { isDraggingRef.current = false; }}
+          onTouchStart={() => { isDraggingRef.current = true; }}
+          onTouchEnd={() => { isDraggingRef.current = false; }}
           className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-ew-resize appearance-none m-0 p-0"
           style={{ 
             WebkitAppearance: 'none',
-            touchAction: 'pan-y' // Libera o bloco de rolagem nativo do IOS/Android e acaba com o "Scroll Hijacking"
+            touchAction: 'pan-y' // Corrige o bug de Scroll Hijacking mobile
           }}
           aria-label="Controle de transformação de imagem"
         />
