@@ -83,7 +83,7 @@ export function LocationSection() {
 
         {/* Conteúdo Empilhado: Mapa + Avaliações */}
         <div className="w-full flex flex-col gap-12">
-          
+
           {/* Map Container */}
           <div
             data-animate="loc-el"
@@ -106,7 +106,7 @@ export function LocationSection() {
           {/* Reviews Container (Elfsight) */}
           <div
             data-animate="loc-el"
-            className="w-full relative shadow-[0_30px_70px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden bg-[#1c1b1b] px-4 py-8 md:px-12 md:py-12" 
+            className="w-full relative shadow-[0_30px_70px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden bg-[#1c1b1b] px-4 py-8 md:px-12 md:py-12"
             style={{ minHeight: "400px" }}
           >
             <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
