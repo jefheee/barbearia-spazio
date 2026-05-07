@@ -86,8 +86,8 @@ export function SpazioExperience() {
         className="w-full flex flex-col justify-center items-center text-center px-6 lg:px-12"
         style={{
           backgroundColor: "#fafafa",
-          paddingTop: "clamp(3rem, 6vw, 6rem)",
-          paddingBottom: "clamp(3rem, 6vw, 6rem)",
+          paddingTop: "clamp(6rem, 12vw, 12rem)",
+          paddingBottom: "clamp(6rem, 12vw, 12rem)",
         }}
       >
         <div className="max-w-2xl mx-auto flex flex-col items-center">
@@ -102,7 +102,7 @@ export function SpazioExperience() {
             Baseline
           </span>
           <h2
-            className="font-display font-extrabold tracking-tighter mb-12 leading-snug text-center"
+            className="font-display font-extrabold tracking-tighter mb-20 leading-snug text-center"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "rgb(24,24,27)",
@@ -110,7 +110,7 @@ export function SpazioExperience() {
           >
             O Padrão
           </h2>
-          <ul className="space-y-8 flex flex-col items-center w-full">
+          <ul className="space-y-16 flex flex-col items-center w-full">
             {STANDARD_ITEMS.map((item, i) => (
               <li key={i} className="flex flex-col items-center w-full">
                 <span
@@ -137,8 +137,8 @@ export function SpazioExperience() {
         className="w-full flex flex-col justify-center items-center text-center px-6 lg:px-12"
         style={{
           backgroundColor: "#0a0a0a",
-          paddingTop: "clamp(3rem, 6vw, 6rem)",
-          paddingBottom: "clamp(3rem, 6vw, 6rem)",
+          paddingTop: "clamp(6rem, 12vw, 12rem)",
+          paddingBottom: "clamp(6rem, 12vw, 12rem)",
         }}
       >
         <div className="max-w-lg mx-auto flex flex-col items-center">
@@ -153,7 +153,7 @@ export function SpazioExperience() {
             Elite Tier
           </span>
           <h2
-            className="font-display font-extrabold tracking-tighter mb-12 leading-snug text-center"
+            className="font-display font-extrabold tracking-tighter mb-20 leading-snug text-center"
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               color: "#fafafa",
@@ -161,7 +161,7 @@ export function SpazioExperience() {
           >
             A Consultoria Spazio
           </h2>
-          <ul className="space-y-8 flex flex-col items-center">
+          <ul className="space-y-16 flex flex-col items-center">
             {SPAZIO_ITEMS.map((item, i) => (
               <li key={i} className="flex flex-col items-center">
                 <span

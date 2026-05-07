@@ -38,10 +38,10 @@ export function TransformationShowcase() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative w-full bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center py-20 px-6 lg:px-12"
+      className="relative w-full bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center py-32 md:py-40 px-6 lg:px-12"
     >
       {/* Cabeçalho */}
-      <div className="w-full flex flex-col items-center justify-center text-center pb-12 z-10">
+      <div className="w-full flex flex-col items-center justify-center text-center pb-20 md:pb-24 z-10">
         <span
           className="font-display font-bold uppercase block mb-4"
           style={{

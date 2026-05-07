@@ -42,14 +42,14 @@ export function LocationSection() {
       className="w-full flex justify-center overflow-hidden"
       style={{
         backgroundColor: "#050505",
-        paddingTop: "clamp(6rem, 12vw, 10rem)",
-        paddingBottom: "clamp(6rem, 12vw, 10rem)",
+        paddingTop: "clamp(8rem, 15vw, 15rem)",
+        paddingBottom: "clamp(8rem, 15vw, 15rem)",
       }}
       aria-label="Localização Spazio"
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
 
-        <div data-animate="loc-el" className="text-center mb-16 md:mb-20">
+        <div data-animate="loc-el" className="text-center mb-24 md:mb-32">
           <span
             className="font-display font-bold uppercase block mb-4 text-center"
             style={{
@@ -82,7 +82,7 @@ export function LocationSection() {
         </div>
 
         {/* Conteúdo Empilhado: Mapa + Avaliações */}
-        <div className="w-full flex flex-col gap-12">
+        <div className="w-full flex flex-col gap-20">
 
           {/* Map Container */}
           <div

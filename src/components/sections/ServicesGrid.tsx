@@ -50,15 +50,15 @@ export function ServicesGrid() {
       className="w-full flex flex-col items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "#fafafa",
-        paddingTop: "clamp(4rem, 10vw, 12rem)",
-        paddingBottom: "clamp(4rem, 10vw, 12rem)",
+        paddingTop: "clamp(8rem, 15vw, 15rem)",
+        paddingBottom: "clamp(8rem, 15vw, 15rem)",
       }}
       aria-label="Engenharia Estética Aplicada — Serviços"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col items-center justify-center text-center">
         {/* Section Header */}
         <div
-          className="flex flex-col items-center justify-center mb-16 md:mb-24 gap-4 w-full"
+          className="flex flex-col items-center justify-center mb-24 md:mb-32 gap-4 w-full"
           data-animate="grid-el"
         >
           <div className="max-w-2xl mx-auto text-center">

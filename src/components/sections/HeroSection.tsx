@@ -70,7 +70,7 @@ export function HeroSection() {
           fill
           priority
           quality={100}
-          className="object-cover opacity-80 mix-blend-overlay scale-110 md:scale-105" 
+          className="object-cover opacity-80 mix-blend-overlay scale-110 md:scale-105"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -97,7 +97,7 @@ export function HeroSection() {
             ))}
           </span>
         </h1>
-        <p 
+        <p
           ref={subTextRef}
           className="text-gray-400 mt-8 font-inter text-sm tracking-widest uppercase drop-shadow-lg opacity-0"
         >

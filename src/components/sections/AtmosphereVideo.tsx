@@ -2,7 +2,7 @@
 
 export function AtmosphereVideo() {
   return (
-    <section className="w-full flex justify-center items-center py-20 px-6" style={{ backgroundColor: "#fafafa" }}>
+    <section className="w-full flex justify-center items-center py-32 md:py-40 px-6" style={{ backgroundColor: "#fafafa" }}>
       <div className="relative w-full max-w-sm aspect-[9/16] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.2)]">
         <video 
           src="/vídeospazio.mp4" 

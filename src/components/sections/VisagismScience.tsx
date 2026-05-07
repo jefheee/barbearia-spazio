@@ -56,14 +56,14 @@ export function VisagismScience() {
       className="w-full flex justify-center overflow-hidden"
       style={{
         backgroundColor: "#0a0a0a",
-        paddingTop: "clamp(6rem, 12vw, 10rem)",
-        paddingBottom: "clamp(6rem, 12vw, 10rem)",
+        paddingTop: "clamp(8rem, 15vw, 15rem)",
+        paddingBottom: "clamp(8rem, 15vw, 15rem)",
       }}
       aria-label="A Ciência do Visagismo"
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
         
-        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-16 md:mb-20">
+        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-24 md:mb-32">
           <h2
             className="font-display font-bold tracking-tighter w-full text-center"
             style={{
@@ -77,7 +77,7 @@ export function VisagismScience() {
           </h2>
         </div>
 
-        <div data-animate="science-el" className="w-full flex justify-center text-center mb-24 md:mb-32">
+        <div data-animate="science-el" className="w-full flex justify-center text-center mb-32 md:mb-48">
           <p
             className="font-body leading-relaxed max-w-3xl text-center px-4"
             style={{
@@ -94,7 +94,7 @@ export function VisagismScience() {
 
         {/* Process Grid — 3 columns */}
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-24 lg:gap-32 pt-24 md:pt-32 w-full"
+          className="grid grid-cols-1 md:grid-cols-3 gap-24 lg:gap-32 pt-32 md:pt-48 w-full"
           style={{ borderTop: "1px solid rgb(39,39,42)" }}
         >
           {PROCESS_STEPS.map((step, idx) => (
