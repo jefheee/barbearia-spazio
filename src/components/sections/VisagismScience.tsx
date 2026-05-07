@@ -63,27 +63,25 @@ export function VisagismScience() {
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center">
         
-        <div data-animate="science-el" className="w-full flex flex-col items-center justify-center text-center mb-24 md:mb-32">
+        <div data-animate="science-el" className="flex flex-col items-center text-center space-y-12 mb-32 md:mb-40 w-full">
           <h2
             className="font-display font-bold tracking-tighter w-full text-center"
             style={{
               fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
-              lineHeight: 1.25,
+              lineHeight: 1.1,
               color: "#fafafa",
             }}
           >
             Não é um corte.<br className="md:hidden" />
             <span style={{ color: "#f1c97d" }}> É engenharia de imagem.</span>
           </h2>
-        </div>
 
-        <div data-animate="science-el" className="w-full flex justify-center text-center mb-32 md:mb-48">
           <p
-            className="font-body leading-relaxed max-w-3xl text-center px-4"
+            className="font-body leading-relaxed max-w-2xl mx-auto text-center px-4"
             style={{
               fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
               color: "rgb(161,161,170)",
-              lineHeight: 2.0,
+              lineHeight: 1.8,
             }}
           >
             O Visagismo Arquitetônico da Spazio não segue tendências. Nós mapeamos
@@ -99,15 +97,15 @@ export function VisagismScience() {
         >
           {PROCESS_STEPS.map((step, idx) => (
             <div key={idx} className="w-full flex flex-col items-center text-center px-4" data-animate="science-el">
-              <div
-                className="font-display font-bold w-full text-center tracking-wide"
-                style={{ fontSize: "1.5rem", color: "#f1c97d", marginBottom: "1.75rem" }}
+              <h3
+                className="font-display font-bold w-full text-center tracking-wide mb-6"
+                style={{ fontSize: "1.5rem", color: "#f1c97d" }}
               >
                 {step.title}
-              </div>
+              </h3>
               <p
-                className="font-body leading-relaxed w-full max-w-[340px] text-center"
-                style={{ fontSize: "16px", color: "rgb(161,161,170)", lineHeight: 1.8 }}
+                className="font-body max-w-[280px] text-center"
+                style={{ fontSize: "16px", color: "rgb(161,161,170)", lineHeight: 1.6 }}
               >
                 {step.desc}
               </p>

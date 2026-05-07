@@ -110,7 +110,7 @@ export function SpazioExperience() {
           >
             O Padrão
           </h2>
-          <ul className="space-y-16 flex flex-col items-center w-full">
+          <ul className="space-y-20 flex flex-col items-center w-full">
             {STANDARD_ITEMS.map((item, i) => (
               <li key={i} className="flex flex-col items-center w-full">
                 <span
@@ -120,8 +120,8 @@ export function SpazioExperience() {
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-base md:text-lg max-w-sm mt-4 text-center leading-relaxed"
-                  style={{ color: "rgb(82,82,91)" }}
+                  className="font-body text-base md:text-lg max-w-sm mt-6 text-center"
+                  style={{ color: "rgb(82,82,91)", lineHeight: 1.6 }}
                 >
                   {item.desc}
                 </p>
@@ -171,8 +171,8 @@ export function SpazioExperience() {
                   {item.title}
                 </span>
                 <p
-                  className="font-body text-base md:text-lg max-w-md mt-4 text-center leading-relaxed"
-                  style={{ color: "rgb(161,161,170)" }}
+                  className="font-body text-base md:text-lg max-w-md mt-6 text-center"
+                  style={{ color: "rgb(161,161,170)", lineHeight: 1.6 }}
                 >
                   {item.desc}
                 </p>

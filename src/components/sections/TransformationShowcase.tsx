@@ -41,9 +41,9 @@ export function TransformationShowcase() {
       className="relative w-full bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center py-32 md:py-40 px-6 lg:px-12"
     >
       {/* Cabeçalho */}
-      <div className="w-full flex flex-col items-center justify-center text-center pb-20 md:pb-24 z-10">
+      <div className="w-full flex flex-col items-center justify-center text-center pb-20 md:pb-24 z-10 space-y-8">
         <span
-          className="font-display font-bold uppercase block mb-4"
+          className="font-display font-bold uppercase block"
           style={{
             fontSize: "12px",
             letterSpacing: "0.3em",
@@ -59,6 +59,7 @@ export function TransformationShowcase() {
             fontSize: "clamp(2rem, 5vw, 3.5rem)",
             color: "#fafafa",
             minHeight: "130px",
+            lineHeight: 1.1,
           }}
         >
           {progress < 50 ? (
@@ -67,7 +68,7 @@ export function TransformationShowcase() {
             <span className="block animate-fade-up text-[#f1c97d]">A versão que o mercado<br />não esquece.</span>
           )}
         </h2>
-        <p className="text-gray-400 mt-4 font-inter text-sm tracking-widest uppercase">
+        <p className="text-gray-400 font-inter text-sm tracking-widest uppercase">
           Role a tela ou arraste para interagir
         </p>
       </div>
