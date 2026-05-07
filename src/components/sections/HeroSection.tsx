@@ -43,7 +43,7 @@ export function HeroSection() {
             if (bgWrapperRef.current) {
               const r = proxy.radius;
               bgWrapperRef.current.style.clipPath = `circle(${r}% at 50% 50%)`;
-              bgWrapperRef.current.style.WebkitClipPath = `circle(${r}% at 50% 50%)`;
+              bgWrapperRef.current.style.setProperty("-webkit-clip-path", `circle(${r}% at 50% 50%)`);
             }
           },
         },
